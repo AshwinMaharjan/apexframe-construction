@@ -6,21 +6,22 @@ $secondary-color: #374151;
 $text-color: #000000;
 $text-white: #ffffff;
 $dark-background: #222725;
+$light-background: #554c4c;
 
 // ============================================
 // Derived / Supporting Tokens
 // ============================================
 $primary-light: rgba($primary-color, 0.12);
-$primary-glow:  rgba($primary-color, 0.35);
-$border-light:  rgba(255, 255, 255, 0.08);
-$border-muted:  rgba(0, 0, 0, 0.08);
-$shadow-card:   0 8px 40px rgba(0, 0, 0, 0.10);
+$primary-glow: rgba($primary-color, 0.35);
+$border-light: rgba(255, 255, 255, 0.08);
+$border-muted: rgba(0, 0, 0, 0.08);
+$shadow-card: 0 8px 40px rgba(0, 0, 0, 0.1);
 $shadow-strong: 0 20px 60px rgba(0, 0, 0, 0.18);
 
 // ============================================
 // Typography
 // ============================================
-@import url('https://fonts.googleapis.com/css2?family=Rubik:ital,wght@0,300..900;1,300..900&display=swap');
+@import url("https://fonts.googleapis.com/css2?family=Rubik:ital,wght@0,300..900;1,300..900&display=swap");
 
 * {
   box-sizing: border-box;
@@ -46,12 +47,12 @@ h2 {
   letter-spacing: -0.01em;
 }
 
-h3 {
-  font-size: 1.25rem;
-  font-weight: 700;
-  letter-spacing: 0.03em;
-  text-transform: uppercase;
-}
+// h3 {
+//   font-size: 1.25rem;
+//   font-weight: 700;
+//   letter-spacing: 0.03em;
+//   text-transform: uppercase;
+// }
 
 p {
   font-size: 1.05rem;
@@ -97,7 +98,7 @@ header {
         position: relative;
 
         &::after {
-          content: '';
+          content: "";
           position: absolute;
           bottom: -2px;
           left: 0;
@@ -118,11 +119,13 @@ header {
       margin-left: 8px;
       padding: 6px 14px !important;
       border-radius: 6px;
-      transition: background 0.2s ease, color 0.2s ease;
+      transition:
+        background 0.2s ease,
+        color 0.2s ease;
       position: relative;
 
       &::after {
-        content: '';
+        content: "";
         position: absolute;
         bottom: 2px;
         left: 14px;
@@ -159,7 +162,12 @@ header {
     display: flex;
     align-items: center;
     background-image:
-      linear-gradient(120deg, rgba(0,0,0,0.88) 0%, rgba(0,0,0,0.55) 55%, rgba(0,0,0,0.15) 100%),
+      linear-gradient(
+        120deg,
+        rgba(0, 0, 0, 0.88) 0%,
+        rgba(0, 0, 0, 0.55) 55%,
+        rgba(0, 0, 0, 0.15) 100%
+      ),
       url("/images/hero-section.png");
     background-size: cover;
     background-position: center;
@@ -169,13 +177,17 @@ header {
 
     // Subtle warm vignette at bottom
     &::after {
-      content: '';
+      content: "";
       position: absolute;
       bottom: 0;
       left: 0;
       right: 0;
       height: 160px;
-      background: linear-gradient(to top, rgba($dark-background, 0.15), transparent);
+      background: linear-gradient(
+        to top,
+        rgba($dark-background, 0.15),
+        transparent
+      );
       pointer-events: none;
     }
 
@@ -210,9 +222,11 @@ header {
     h1 {
       color: $text-white;
       margin-bottom: 1.5rem;
-      text-shadow: 0 2px 20px rgba(0,0,0,0.3);
+      text-shadow: 0 2px 20px rgba(0, 0, 0, 0.3);
 
-      br { display: block; }
+      br {
+        display: block;
+      }
     }
 
     p {
@@ -323,13 +337,17 @@ header {
 
   // Subtle decorative background accent
   &::before {
-    content: '';
+    content: "";
     position: absolute;
     top: -120px;
     right: -120px;
     width: 480px;
     height: 480px;
-    background: radial-gradient(circle, rgba($primary-color, 0.07) 0%, transparent 70%);
+    background: radial-gradient(
+      circle,
+      rgba($primary-color, 0.07) 0%,
+      transparent 70%
+    );
     border-radius: 50%;
     pointer-events: none;
   }
@@ -344,7 +362,7 @@ header {
     position: relative;
 
     &::before {
-      content: '';
+      content: "";
       position: absolute;
       top: 20px;
       left: 20px;
@@ -388,19 +406,12 @@ header {
     border-radius: 50px;
   }
 
-  h2 {
-    font-size: clamp(1.6rem, 2.8vw, 2.2rem);
-    font-weight: 800;
-    color: $secondary-color;
-    margin-bottom: 1.6rem;
-    line-height: 1.25;
-  }
-
   p {
     font-size: 1rem;
     line-height: 1.85;
     color: lighten($secondary-color, 20%);
     text-align: left;
+    text-align: center;
     margin-bottom: 1.2rem;
 
     &:last-of-type {
@@ -429,10 +440,10 @@ header {
       border: 1px solid $border-muted;
       padding: 7px 16px;
       border-radius: 50px;
-      box-shadow: 0 2px 8px rgba(0,0,0,0.05);
+      box-shadow: 0 2px 8px rgba(0, 0, 0, 0.05);
 
       &::before {
-        content: '✓';
+        content: "✓";
         color: $primary-color;
         font-weight: 800;
         font-size: 0.85rem;
@@ -466,6 +477,260 @@ header {
 }
 
 // ============================================
+// CARD HOVER OVERLAY — Services & Projects
+// ============================================
+.section-2,
+.section-3 {
+  .item {
+    position: relative;
+    overflow: hidden;
+    border-radius: 12px;
+    cursor: pointer;
+
+    .service-image {
+      img {
+        display: block;
+        width: 100%;
+        height: 280px;
+        object-fit: cover;
+        transition: transform 0.4s ease;
+      }
+    }
+
+    &:hover .service-image img {
+      transform: scale(1.06);
+    }
+
+    // Overlay wrapper sits on top of the image
+    .service-overlay {
+      position: absolute;
+      inset: 0;
+      display: flex;
+      flex-direction: column;
+      justify-content: flex-end;
+    }
+
+    // Title always visible at the bottom
+    .overlay-title {
+      padding: 18px 16px 16px;
+      background: linear-gradient(
+        to top,
+        rgba(0, 0, 0, 0.78) 0%,
+        transparent 100%
+      );
+      color: $text-white;
+      font-size: 1rem;
+      font-weight: 700;
+      text-transform: uppercase;
+      letter-spacing: 0.05em;
+      transition:
+        transform 0.35s ease,
+        opacity 0.35s ease;
+      position: relative;
+      z-index: 1;
+    }
+
+    // Full overlay slides up on hover
+    .overlay-body {
+      position: absolute;
+      inset: 0;
+      background: rgba(0, 0, 0, 0.75);
+      display: flex;
+      flex-direction: column;
+      align-items: flex-start;
+      justify-content: flex-end;
+      padding: 24px 20px;
+      transform: translateY(100%);
+      transition: transform 0.38s cubic-bezier(0.25, 0.8, 0.25, 1);
+      z-index: 2;
+
+      h3 {
+        color: $primary-color;
+        font-size: 0.85rem;
+        text-transform: uppercase;
+        letter-spacing: 0.1em;
+        margin-bottom: 10px;
+      }
+
+      p {
+        color: rgba(255, 255, 255, 0.85);
+        font-size: 0.88rem;
+        line-height: 1.65;
+        margin-bottom: 18px;
+      }
+
+      .btn-primary {
+        font-size: 0.78rem;
+        padding: 9px 20px;
+        background-color: $primary-color;
+        border: 2px solid $primary-color;
+        border-radius: 6px;
+        color: $text-white;
+        font-weight: 700;
+        text-transform: uppercase;
+        letter-spacing: 0.08em;
+        transition: background 0.2s ease;
+
+        &:hover {
+          background-color: darken($primary-color, 8%);
+          border-color: darken($primary-color, 8%);
+        }
+      }
+    }
+
+    // Hover state: slide overlay up, fade title out
+    &:hover .overlay-body {
+      transform: translateY(0);
+    }
+
+    &:hover .overlay-title {
+      opacity: 0;
+      transform: translateY(16px);
+    }
+  }
+}
+// ============================================
+// SECTION TITLE — shared center alignment
+// ============================================
+.section-title {
+  text-align: center;
+  max-width: 680px;
+  margin: 0 auto 3rem;
+
+  span {
+    display: inline-block;
+    color: $primary-color;
+    font-size: 0.82rem;
+    font-weight: 700;
+    text-transform: uppercase;
+    letter-spacing: 0.14em;
+    margin-bottom: 0.75rem;
+    padding: 5px 14px;
+    background: $primary-light;
+    border: 1px solid rgba($primary-color, 0.3);
+    border-radius: 50px;
+  }
+
+  h2,
+  h3 {
+    color: $secondary-color;
+    margin-bottom: 1rem;
+  }
+
+  p {
+    color: lighten($secondary-color, 20%);
+    font-size: 1rem;
+    line-height: 1.8;
+  }
+}
+
+// ============================================
+// SECTION 4 — Why Choose Us
+// ============================================
+.section-4 {
+  background: #fafaf9;
+  padding: 80px 0;
+
+  .feature-item {
+    text-align: center;
+    padding: 2rem 1.5rem;
+    border-radius: 14px;
+    transition:
+      box-shadow 0.3s ease,
+      transform 0.3s ease;
+    background: #fff;
+    border: 1px solid $border-muted;
+
+    &:hover {
+      box-shadow: $shadow-card;
+      transform: translateY(-6px);
+    }
+
+    .feature-icon {
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      font-style: normal;
+      font-size: 2rem;
+      width: 64px;
+      height: 64px;
+      background: $primary-light;
+      border-radius: 50%;
+      margin-bottom: 1.25rem;
+    }
+
+    h3 {
+      color: $secondary-color;
+      font-size: 1rem;
+      font-weight: 700;
+      text-transform: uppercase;
+      letter-spacing: 0.06em;
+      margin-bottom: 0.75rem;
+    }
+
+    p {
+      font-size: 0.95rem;
+      line-height: 1.75;
+      color: lighten($secondary-color, 20%);
+      margin: 0;
+    }
+  }
+}
+
+// ============================================
+// ALTERNATING SECTION BACKGROUNDS
+// ============================================
+.section-2 {
+  background: #ffffff;
+}
+
+.section-3 {
+  background: #f5f7fa;
+}
+
+.section-4 {
+  background: #ffffff;
+}
+.section-5 {
+  background: #f5f7fa;
+}
+.section-6 {
+  background: #ffffff;
+}
+
+// ============================================
+// VIEW ALL BUTTONS — centered
+// ============================================
+.section-2,
+.section-3 {
+  .text-center.mt-4 {
+    padding-bottom: 1rem;
+
+    .btn-primary {
+      display: inline-flex;
+      align-items: center;
+      gap: 8px;
+      background-color: $primary-color;
+      border: 2px solid $primary-color;
+      padding: 13px 32px;
+      font-size: 0.9rem;
+      font-weight: 700;
+      text-transform: uppercase;
+      letter-spacing: 0.08em;
+      border-radius: 8px;
+      color: $text-white;
+      box-shadow: 0 6px 20px rgba($primary-color, 0.35);
+      transition: all 0.25s ease;
+
+      &:hover {
+        background-color: $secondary-color;
+        border-color: $secondary-color;
+        transform: translateY(-2px);
+        box-shadow: 0 10px 28px rgba($secondary-color, 0.35);
+      }
+    }
+  }
+}
 // FOOTER
 // ============================================
 footer {
@@ -477,18 +742,23 @@ footer {
 
   // Decorative top border
   &::before {
-    content: '';
+    content: "";
     position: absolute;
     top: 0;
     left: 0;
     right: 0;
     height: 3px;
-    background: linear-gradient(90deg, transparent, $primary-color, transparent);
+    background: linear-gradient(
+      90deg,
+      transparent,
+      $primary-color,
+      transparent
+    );
   }
 
   // Large faint background text
   &::after {
-    content: 'APEXFRAME';
+    content: "APEXFRAME";
     position: absolute;
     bottom: 60px;
     left: 50%;
@@ -496,7 +766,7 @@ footer {
     font-size: clamp(4rem, 10vw, 8rem);
     font-weight: 900;
     letter-spacing: 0.15em;
-    color: rgba(255,255,255,0.025);
+    color: rgba(255, 255, 255, 0.025);
     white-space: nowrap;
     pointer-events: none;
     user-select: none;
@@ -522,7 +792,7 @@ footer {
     padding-bottom: 12px;
 
     &::after {
-      content: '';
+      content: "";
       position: absolute;
       bottom: 0;
       left: 0;
@@ -541,7 +811,9 @@ footer {
       letter-spacing: 0.03em;
       color: $text-white;
 
-      &::after { display: none; }
+      &::after {
+        display: none;
+      }
 
       span {
         color: $primary-color;
@@ -564,12 +836,12 @@ footer {
         width: 36px;
         height: 36px;
         border-radius: 8px;
-        background: rgba(255,255,255,0.06);
-        border: 1px solid rgba(255,255,255,0.1);
+        background: rgba(255, 255, 255, 0.06);
+        border: 1px solid rgba(255, 255, 255, 0.1);
         display: flex;
         align-items: center;
         justify-content: center;
-        color: rgba(255,255,255,0.6);
+        color: rgba(255, 255, 255, 0.6);
         font-size: 0.85rem;
         transition: all 0.2s ease;
 
@@ -593,17 +865,21 @@ footer {
       a {
         font-size: 0.92rem;
         color: rgba(255, 255, 255, 0.55);
-        transition: color 0.2s ease, padding-left 0.2s ease;
+        transition:
+          color 0.2s ease,
+          padding-left 0.2s ease;
         display: inline-block;
         position: relative;
 
         &::before {
-          content: '→';
+          content: "→";
           position: absolute;
           left: -16px;
           opacity: 0;
           color: $primary-color;
-          transition: opacity 0.2s ease, left 0.2s ease;
+          transition:
+            opacity 0.2s ease,
+            left 0.2s ease;
           font-size: 0.8rem;
         }
 
@@ -673,7 +949,9 @@ footer {
     text-align: center !important;
     max-width: 100%;
 
-    p { max-width: 100%; }
+    p {
+      max-width: 100%;
+    }
   }
 
   .section-2 {
@@ -688,7 +966,9 @@ footer {
   }
 
   footer {
-    &::after { display: none; }
+    &::after {
+      display: none;
+    }
 
     .col-md-3 {
       margin-bottom: 2rem;
@@ -712,14 +992,1352 @@ footer {
 
   .section-1 .stats-bar .stat-item {
     border-right: none;
-    border-bottom: 1px solid rgba(255,255,255,0.08);
+    border-bottom: 1px solid rgba(255, 255, 255, 0.08);
     padding: 12px 0;
 
-    &:last-child { border-bottom: none; }
+    &:last-child {
+      border-bottom: none;
+    }
   }
 
   footer .footer-bottom {
     justify-content: center;
     text-align: center;
+  }
+}
+
+// ============================================
+// SECTION 5 — Testimonials
+// ============================================
+.section-5 {
+  padding: 80px 0;
+  .swiper {
+    padding-bottom: 60px;
+  }
+  .swiper-pagination-bullet-active {
+    background: $primary-color;
+  }
+  .feature-item {
+    height: 100%;
+    min-height: 320px;
+
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    background: #fff;
+    border: 1px solid $border-muted;
+    border-radius: 14px;
+    padding: 2rem 1.5rem;
+    position: relative;
+    transition:
+      box-shadow 0.3s ease,
+      transform 0.3s ease;
+
+    &:hover {
+      box-shadow: $shadow-card;
+      transform: translateY(-6px);
+    }
+
+    // Opening quote mark
+    &::before {
+      content: "\201C";
+      position: absolute;
+      top: 16px;
+      left: 20px;
+      font-size: 4rem;
+      line-height: 1;
+      color: rgba($primary-color, 0.15);
+      font-family: Georgia, serif;
+      pointer-events: none;
+    }
+
+    .rating {
+      display: flex;
+      gap: 4px;
+      margin-bottom: 1rem;
+
+      span {
+        font-size: 1rem;
+      }
+    }
+    .swiper-slide {
+      height: auto;
+    }
+
+    .swiper-wrapper {
+      align-items: stretch;
+    }
+    .testimonial-text {
+      display: -webkit-box;
+      -webkit-box-orient: vertical;
+      overflow: hidden;
+
+      min-height: 110px;
+      display: block;
+      font-size: 0.95rem;
+      line-height: 1.75;
+      color: lighten($secondary-color, 20%);
+      font-style: italic;
+      margin-bottom: 1.5rem;
+    }
+
+    // Reviewer info (name + role)
+    .reviewer {
+      display: flex;
+      align-items: center;
+      gap: 12px;
+      margin-top: auto;
+
+      .avatar {
+        width: 50px;
+        height: 50px;
+        border-radius: 50%;
+        background: $primary-light;
+        border: 2px solid rgba($primary-color, 0.3);
+        overflow: hidden;
+        flex-shrink: 0;
+
+        img {
+          width: 100%;
+          height: 100%;
+          object-fit: cover;
+        }
+      }
+
+      .reviewer-info {
+        .name {
+          display: block;
+          font-size: 0.88rem;
+          font-weight: 700;
+          color: $secondary-color;
+          text-transform: uppercase;
+          letter-spacing: 0.05em;
+        }
+
+        .role {
+          display: block;
+          font-size: 0.8rem;
+          color: $primary-color;
+          font-weight: 500;
+        }
+      }
+    }
+  }
+
+  // Row spacing between cards
+  .row {
+    gap: 0;
+
+    [class*="col-"] {
+      margin-bottom: 1.5rem;
+    }
+  }
+}
+
+// ============================================
+// SECTION 5 — Responsive
+// ============================================
+@media (max-width: 767px) {
+  .section-5 {
+    padding: 50px 0;
+
+    .feature-item {
+      margin-bottom: 1.25rem;
+    }
+  }
+}
+// ============================================
+// SECTION 6 — Blogs & Articles
+// ============================================
+.section-6 {
+  padding: 80px 0;
+  position: relative;
+
+  .blog-card {
+    background: #fff;
+    border-radius: 18px;
+    overflow: hidden;
+    border: 1px solid $border-muted;
+    height: 100%;
+    transition:
+      transform 0.35s ease,
+      box-shadow 0.35s ease;
+
+    &:hover {
+      transform: translateY(-8px);
+      box-shadow: $shadow-card;
+    }
+
+    &:hover .blog-image img {
+      transform: scale(1.08);
+    }
+
+    .blog-image {
+      position: relative;
+      overflow: hidden;
+
+      img {
+        width: 100%;
+        height: 260px;
+        object-fit: cover;
+        transition: transform 0.45s ease;
+      }
+
+      &::after {
+        content: "";
+        position: absolute;
+        inset: 0;
+        background: linear-gradient(to top, rgba(0, 0, 0, 0.15), transparent);
+      }
+    }
+
+    .blog-content {
+      padding: 1.8rem;
+      text-align: center;
+
+      .blog-category {
+        display: inline-block;
+        margin-bottom: 1rem;
+        padding: 6px 14px;
+
+        background: $primary-light;
+        border: 1px solid rgba($primary-color, 0.25);
+
+        color: $primary-color;
+        font-size: 0.75rem;
+        font-weight: 700;
+        text-transform: uppercase;
+        letter-spacing: 0.08em;
+
+        border-radius: 50px;
+      }
+
+      h3 {
+        font-size: 1.25rem;
+        font-weight: 700;
+        line-height: 1.45;
+        color: $secondary-color;
+        margin-bottom: 1rem;
+        transition: color 0.25s ease;
+      }
+
+      p {
+        font-size: 0.95rem;
+        line-height: 1.8;
+        color: lighten($secondary-color, 18%);
+        margin-bottom: 1.5rem;
+        -webkit-box-orient: vertical;
+        overflow: hidden;
+      }
+
+      .read-more-btn {
+        display: inline-flex;
+        align-items: center;
+        gap: 8px;
+
+        color: $primary-color;
+        font-size: 0.85rem;
+        font-weight: 700;
+        text-transform: uppercase;
+        letter-spacing: 0.08em;
+
+        position: relative;
+        transition: all 0.25s ease;
+
+        &::after {
+          content: "→";
+          transition: transform 0.25s ease;
+        }
+
+        &:hover {
+          color: darken($primary-color, 10%);
+        }
+
+        &:hover::after {
+          transform: translateX(4px);
+        }
+      }
+    }
+  }
+
+  // View all button
+  .text-center.mt-5 {
+    .btn-primary {
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+
+      padding: 14px 34px;
+
+      background: $primary-color;
+      border: 2px solid $primary-color;
+
+      color: $text-white;
+      font-size: 0.9rem;
+      font-weight: 700;
+      text-transform: uppercase;
+      letter-spacing: 0.08em;
+
+      border-radius: 10px;
+
+      box-shadow: 0 8px 24px rgba($primary-color, 0.3);
+
+      transition: all 0.3s ease;
+
+      &:hover {
+        background: $secondary-color;
+        border-color: $secondary-color;
+        transform: translateY(-3px);
+        box-shadow: 0 12px 30px rgba($secondary-color, 0.3);
+      }
+    }
+  }
+}
+
+// ============================================
+// Responsive
+// ============================================
+@media (max-width: 991px) {
+  .section-6 {
+    .blog-card {
+      .blog-image img {
+        height: 240px;
+      }
+    }
+  }
+}
+
+@media (max-width: 767px) {
+  .section-6 {
+    padding: 60px 0;
+
+    .blog-card {
+      .blog-image img {
+        height: 220px;
+      }
+
+      .blog-content {
+        padding: 1.5rem;
+
+        h3 {
+          font-size: 1.1rem;
+        }
+
+        p {
+          font-size: 0.9rem;
+        }
+      }
+    }
+
+    .text-center.mt-5 {
+      .btn-primary {
+        width: 100%;
+      }
+    }
+  }
+}
+
+.section-7 {
+  padding-top: 80px; // offset for fixed header
+
+  .hero {
+    position: relative;
+    min-height: 500px;
+    display: flex;
+    align-items: center;
+    background-image:
+      linear-gradient(
+        120deg,
+        rgba(0, 0, 0, 0.88) 0%,
+        rgba(0, 0, 0, 0.55) 55%,
+        rgba(0, 0, 0, 0.15) 100%
+      ),
+      url("/images/hero-section.png");
+    background-size: cover;
+    background-position: center;
+    background-repeat: no-repeat;
+    color: $text-white;
+    overflow: hidden;
+
+    // Subtle warm vignette at bottom
+    &::after {
+      content: "";
+      position: absolute;
+      bottom: 0;
+      left: 0;
+      right: 0;
+      height: 160px;
+      background: linear-gradient(
+        to top,
+        rgba($dark-background, 0.15),
+        transparent
+      );
+      pointer-events: none;
+    }
+
+    .container-fluid {
+      position: relative;
+      z-index: 2;
+      padding: 0 5vw;
+    }
+
+    .text-center {
+      // Push content left for editorial feel
+      text-align: left !important;
+      max-width: 760px;
+    }
+
+    // Badge / eyebrow label
+    > .container-fluid > .text-center > span,
+    span {
+      display: inline-block;
+      color: $primary-color;
+      font-size: 0.85rem;
+      font-weight: 700;
+      text-transform: uppercase;
+      letter-spacing: 0.15em;
+      margin-bottom: 1rem;
+      padding: 6px 16px;
+      background: rgba($primary-color, 0.15);
+      border: 1px solid rgba($primary-color, 0.4);
+      border-radius: 50px;
+    }
+
+    h1 {
+      color: $text-white;
+      margin-bottom: 1.5rem;
+      text-shadow: 0 2px 20px rgba(0, 0, 0, 0.3);
+
+      br {
+        display: block;
+      }
+    }
+
+    p {
+      color: rgba(255, 255, 255, 0.82);
+      font-size: 1.1rem;
+      line-height: 1.75;
+      margin-bottom: 2.4rem;
+      max-width: 580px;
+    }
+
+    .btn-primary {
+      display: inline-flex;
+      align-items: center;
+      gap: 8px;
+      background-color: $primary-color;
+      border: 2px solid $primary-color;
+      padding: 14px 32px;
+      font-size: 0.9rem;
+      font-weight: 700;
+      text-transform: uppercase;
+      letter-spacing: 0.08em;
+      border-radius: 8px;
+      color: $text-white;
+      box-shadow: 0 6px 24px rgba($primary-color, 0.45);
+      transition: all 0.25s ease;
+
+      &:hover {
+        background-color: darken($primary-color, 8%);
+        border-color: darken($primary-color, 8%);
+        transform: translateY(-2px);
+        box-shadow: 0 10px 32px rgba($primary-color, 0.5);
+      }
+
+      &:active {
+        transform: translateY(0);
+      }
+    }
+
+    .btn-secondary {
+      display: inline-flex;
+      align-items: center;
+      gap: 8px;
+      background-color: transparent;
+      border: 2px solid rgba(255, 255, 255, 0.55);
+      padding: 14px 32px;
+      font-size: 0.9rem;
+      font-weight: 700;
+      text-transform: uppercase;
+      letter-spacing: 0.08em;
+      border-radius: 8px;
+      color: $text-white;
+      transition: all 0.25s ease;
+
+      &:hover {
+        background-color: $secondary-color;
+        border-color: $secondary-color;
+        transform: translateY(-2px);
+        box-shadow: 0 10px 32px rgba($secondary-color, 0.4);
+      }
+
+      &:active {
+        transform: translateY(0);
+      }
+    }
+  }
+}
+
+// ============================================
+// SECTION 8 — About Us Detail
+// ============================================
+.section-8 {
+  background: #fafaf9;
+  position: relative;
+  overflow: hidden;
+
+  // Decorative radial accent (mirrors section-2)
+  &::before {
+    content: "";
+    position: absolute;
+    top: -100px;
+    left: -100px;
+    width: 420px;
+    height: 420px;
+    background: radial-gradient(
+      circle,
+      rgba($primary-color, 0.07) 0%,
+      transparent 70%
+    );
+    border-radius: 50%;
+    pointer-events: none;
+  }
+
+  // ── Image column ──────────────────────────
+  &__image-col {
+    position: relative;
+
+    // Offset shadow box behind the image
+    &::before {
+      content: "";
+      position: absolute;
+      top: 20px;
+      left: 20px;
+      right: -20px;
+      bottom: -20px;
+      background: $primary-light;
+      border-radius: 34px;
+      z-index: 0;
+    }
+
+    img {
+      position: relative;
+      z-index: 1;
+      width: 100%;
+      border-radius: 28px;
+      box-shadow: $shadow-strong;
+      object-fit: cover;
+      display: block;
+      transition: transform 0.4s ease;
+
+      &:hover {
+        transform: scale(1.015);
+      }
+    }
+  }
+
+  // ── Content column ────────────────────────
+  &__content-col {
+    padding-left: clamp(1.5rem, 4vw, 4rem);
+
+    span {
+      display: inline-block;
+      color: $primary-color;
+      font-size: 0.82rem;
+      font-weight: 700;
+      text-transform: uppercase;
+      letter-spacing: 0.14em;
+      margin-bottom: 1rem;
+      padding: 5px 14px;
+      background: $primary-light;
+      border: 1px solid rgba($primary-color, 0.3);
+      border-radius: 50px;
+    }
+
+    h2 {
+      color: $secondary-color;
+      margin-bottom: 1.25rem;
+    }
+
+    p {
+      font-size: 1rem;
+      line-height: 1.85;
+      color: lighten($secondary-color, 20%);
+      margin-bottom: 1.1rem;
+
+      &:last-of-type {
+        margin-bottom: 1.75rem;
+      }
+    }
+
+    // Reuse .feature-list pattern from section-2
+    .feature-list {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 10px;
+      margin-bottom: 2rem;
+      list-style: none;
+      padding: 0;
+
+      li {
+        display: flex;
+        align-items: center;
+        gap: 8px;
+        font-size: 0.9rem;
+        font-weight: 600;
+        color: $secondary-color;
+        background: #fff;
+        border: 1px solid $border-muted;
+        padding: 7px 16px;
+        border-radius: 50px;
+        box-shadow: 0 2px 8px rgba(0, 0, 0, 0.05);
+
+        &::before {
+          content: "✓";
+          color: $primary-color;
+          font-weight: 800;
+          font-size: 0.85rem;
+        }
+      }
+    }
+
+    .btn-primary {
+      display: inline-flex;
+      align-items: center;
+      gap: 10px;
+      background-color: $primary-color;
+      border: 2px solid $primary-color;
+      padding: 13px 30px;
+      font-size: 0.9rem;
+      font-weight: 700;
+      text-transform: uppercase;
+      letter-spacing: 0.07em;
+      border-radius: 8px;
+      color: $text-white;
+      box-shadow: 0 6px 20px rgba($primary-color, 0.35);
+      transition: all 0.25s ease;
+
+      &:hover {
+        background-color: $secondary-color;
+        border-color: $secondary-color;
+        transform: translateY(-2px);
+        box-shadow: 0 10px 28px rgba($secondary-color, 0.35);
+      }
+    }
+  }
+
+  // ── Responsive ────────────────────────────
+  @media (max-width: 991px) {
+    &__image-col::before {
+      display: none;
+    }
+
+    &__content-col {
+      padding-left: 1rem;
+      padding-top: 2.5rem;
+    }
+  }
+
+  @media (max-width: 767px) {
+    &__content-col {
+      padding-top: 2rem;
+
+      .btn-primary {
+        width: 100%;
+        justify-content: center;
+      }
+    }
+  }
+}
+
+// ============================================
+// SECTION 9 — Our Team
+// ============================================
+.section-9 {
+  background: #f5f7fa;
+  position: relative;
+  overflow: hidden;
+
+  // Decorative radial accent — top right
+  &::before {
+    content: "";
+    position: absolute;
+    top: -120px;
+    right: -120px;
+    width: 480px;
+    height: 480px;
+    background: radial-gradient(
+      circle,
+      rgba($primary-color, 0.07) 0%,
+      transparent 70%
+    );
+    border-radius: 50%;
+    pointer-events: none;
+  }
+
+  // ── Team Card ─────────────────────────────
+  .team-card {
+    background: #fff;
+    border: 1px solid $border-muted;
+    border-radius: 18px;
+    overflow: hidden;
+    text-align: center;
+    transition:
+      transform 0.35s ease,
+      box-shadow 0.35s ease;
+
+    &:hover {
+      transform: translateY(-8px);
+      box-shadow: $shadow-card;
+
+      .team-card__image img {
+        transform: scale(1.06);
+      }
+
+      .team-card__image::after {
+        opacity: 1;
+      }
+    }
+
+    // ── Image wrapper ──────────────────────
+    &__image {
+      position: relative;
+      overflow: hidden;
+
+      img {
+        width: 100%;
+        height: 300px;
+        object-fit: cover;
+        object-position: top;
+        display: block;
+        transition: transform 0.45s ease;
+      }
+
+      // Amber tint overlay on hover
+      &::after {
+        content: "";
+        position: absolute;
+        inset: 0;
+        background: linear-gradient(
+          to top,
+          rgba($primary-color, 0.45) 0%,
+          transparent 60%
+        );
+        opacity: 0;
+        transition: opacity 0.35s ease;
+        pointer-events: none;
+      }
+    }
+
+    // ── Name & Role strip ──────────────────
+    &__info {
+      padding: 1.1rem 1rem 1.25rem;
+      border-top: 1px solid $border-muted;
+
+      h3 {
+        font-size: 0.95rem;
+        font-weight: 700;
+        color: $secondary-color;
+        text-transform: uppercase;
+        letter-spacing: 0.05em;
+        margin-bottom: 4px;
+      }
+
+      span {
+        display: block;
+        font-size: 0.8rem;
+        font-weight: 500;
+        color: $primary-color;
+        text-transform: uppercase;
+        letter-spacing: 0.08em;
+      }
+    }
+  }
+
+  // ── Responsive ────────────────────────────
+  @media (max-width: 767px) {
+    padding: 50px 0;
+
+    .team-card {
+      &__image img {
+        height: 220px;
+      }
+    }
+  }
+
+  @media (max-width: 480px) {
+    .team-card {
+      &__image img {
+        height: 180px;
+      }
+    }
+  }
+}
+
+// ============================================
+// SECTION 10 — Our Services
+// ============================================
+.section-10 {
+  background: #ffffff;
+  position: relative;
+  overflow: hidden;
+
+  // Decorative radial accent — bottom left
+  &::before {
+    content: "";
+    position: absolute;
+    bottom: -120px;
+    left: -120px;
+    width: 480px;
+    height: 480px;
+    background: radial-gradient(
+      circle,
+      rgba($primary-color, 0.07) 0%,
+      transparent 70%
+    );
+    border-radius: 50%;
+    pointer-events: none;
+  }
+
+  // ── Service Card ──────────────────────────
+  .service-card {
+    position: relative;
+    border-radius: 18px;
+    overflow: hidden;
+    cursor: pointer;
+    background: $dark-background;
+    box-shadow: 0 4px 24px rgba(0, 0, 0, 0.08);
+    transition:
+      transform 0.35s ease,
+      box-shadow 0.35s ease;
+
+    &:hover {
+      transform: translateY(-6px);
+      box-shadow: $shadow-card;
+
+      // Zoom image on hover
+      .service-card__image img {
+        transform: scale(1.07);
+      }
+
+      // Fade image slightly
+      .service-card__image::after {
+        opacity: 1;
+      }
+
+      // Hide title bar
+      .service-card__title {
+        opacity: 0;
+        transform: translateY(12px);
+      }
+
+      // Slide overlay up
+      .service-card__overlay {
+        transform: translateY(0);
+        opacity: 1;
+      }
+    }
+
+    // ── Image ────────────────────────────────
+    &__image {
+      position: relative;
+      overflow: hidden;
+
+      img {
+        width: 100%;
+        height: 340px;
+        object-fit: cover;
+        object-position: center;
+        display: block;
+        transition: transform 0.45s ease;
+      }
+
+      // Dark gradient always present at bottom
+      &::before {
+        content: "";
+        position: absolute;
+        bottom: 0;
+        left: 0;
+        right: 0;
+        height: 50%;
+        background: linear-gradient(
+          to top,
+          rgba(0, 0, 0, 0.72) 0%,
+          transparent 100%
+        );
+        z-index: 1;
+        pointer-events: none;
+      }
+
+      // Extra dark overlay on hover
+      &::after {
+        content: "";
+        position: absolute;
+        inset: 0;
+        background: rgba(0, 0, 0, 0.55);
+        opacity: 0;
+        transition: opacity 0.35s ease;
+        z-index: 2;
+        pointer-events: none;
+      }
+    }
+
+    // ── Title bar (always visible) ────────────
+    &__title {
+      position: absolute;
+      bottom: 0;
+      left: 0;
+      right: 0;
+      padding: 20px 20px 22px;
+      z-index: 3;
+      transition:
+        opacity 0.3s ease,
+        transform 0.3s ease;
+
+      h3 {
+        color: $text-white;
+        font-size: 1rem;
+        font-weight: 700;
+        text-transform: uppercase;
+        letter-spacing: 0.06em;
+        margin: 0;
+        text-shadow: 0 2px 8px rgba(0, 0, 0, 0.4);
+      }
+    }
+
+    // ── Hover Overlay ─────────────────────────
+    &__overlay {
+      position: absolute;
+      inset: 0;
+      background: linear-gradient(
+        160deg,
+        rgba(darken($primary-color, 10%), 0.93) 0%,
+        rgba($dark-background, 0.97) 100%
+      );
+      display: flex;
+      align-items: flex-end;
+      padding: 32px 24px;
+      z-index: 4;
+      transform: translateY(100%);
+      opacity: 0;
+      transition:
+        transform 0.4s cubic-bezier(0.25, 0.8, 0.25, 1),
+        opacity 0.35s ease;
+    }
+
+    &__overlay-inner {
+      width: 100%;
+
+      span {
+        display: inline-block;
+        font-size: 0.72rem;
+        font-weight: 700;
+        text-transform: uppercase;
+        letter-spacing: 0.15em;
+        color: rgba(255, 255, 255, 0.65);
+        margin-bottom: 8px;
+        padding: 4px 12px;
+        border: 1px solid rgba(255, 255, 255, 0.25);
+        border-radius: 50px;
+      }
+
+      h3 {
+        color: $text-white;
+        font-size: 1.05rem;
+        font-weight: 700;
+        text-transform: uppercase;
+        letter-spacing: 0.05em;
+        margin-bottom: 12px;
+      }
+
+      p {
+        color: rgba(255, 255, 255, 0.82);
+        font-size: 0.88rem;
+        line-height: 1.7;
+        margin-bottom: 20px;
+      }
+    }
+
+    // ── Learn More link ───────────────────────
+    &__link {
+      display: inline-flex;
+      align-items: center;
+      gap: 8px;
+      background-color: $primary-color;
+      border: 2px solid $primary-color;
+      color: $text-white;
+      font-size: 0.78rem;
+      font-weight: 700;
+      text-transform: uppercase;
+      letter-spacing: 0.09em;
+      padding: 9px 22px;
+      border-radius: 6px;
+      transition: all 0.25s ease;
+
+      &::after {
+        content: "→";
+        transition: transform 0.25s ease;
+      }
+
+      &:hover {
+        background-color: darken($primary-color, 8%);
+        border-color: darken($primary-color, 8%);
+
+        &::after {
+          transform: translateX(4px);
+        }
+      }
+    }
+  }
+
+  // ── View All Button ───────────────────────
+  .text-center.mt-5 {
+    .btn-primary {
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      gap: 8px;
+      padding: 14px 34px;
+      background: $primary-color;
+      border: 2px solid $primary-color;
+      color: $text-white;
+      font-size: 0.9rem;
+      font-weight: 700;
+      text-transform: uppercase;
+      letter-spacing: 0.08em;
+      border-radius: 10px;
+      box-shadow: 0 8px 24px rgba($primary-color, 0.3);
+      transition: all 0.3s ease;
+
+      &:hover {
+        background: $secondary-color;
+        border-color: $secondary-color;
+        transform: translateY(-3px);
+        box-shadow: 0 12px 30px rgba($secondary-color, 0.3);
+      }
+    }
+  }
+
+  // ── Responsive ────────────────────────────
+  @media (max-width: 991px) {
+    .service-card {
+      &__image img {
+        height: 300px;
+      }
+    }
+  }
+
+  @media (max-width: 767px) {
+    padding: 50px 0;
+
+    .service-card {
+      &__image img {
+        height: 260px;
+      }
+
+      // On touch devices overlay is always partially visible
+      &__overlay {
+        transform: translateY(0);
+        opacity: 1;
+        background: linear-gradient(
+          160deg,
+          rgba(darken($primary-color, 10%), 0.88) 0%,
+          rgba($dark-background, 0.94) 100%
+        );
+      }
+
+      &__title {
+        display: none;
+      }
+    }
+
+    .text-center.mt-5 .btn-primary {
+      width: 100%;
+    }
+  }
+}
+// ============================================
+// SECTION 11 — Contact Us
+// ============================================
+.section-11 {
+  background: #f5f7fa;
+  position: relative;
+  overflow: hidden;
+
+  &::before {
+    content: "";
+    position: absolute;
+    top: -100px;
+    right: -100px;
+    width: 440px;
+    height: 440px;
+    background: radial-gradient(
+      circle,
+      rgba($primary-color, 0.07) 0%,
+      transparent 70%
+    );
+    border-radius: 50%;
+    pointer-events: none;
+  }
+
+  &::after {
+    content: "";
+    position: absolute;
+    bottom: -100px;
+    left: -100px;
+    width: 360px;
+    height: 360px;
+    background: radial-gradient(
+      circle,
+      rgba($primary-color, 0.05) 0%,
+      transparent 70%
+    );
+    border-radius: 50%;
+    pointer-events: none;
+  }
+
+  // ── Left — Contact Info ───────────────────
+  .contact-info {
+    background: #ffffff;
+    border-radius: 20px;
+    padding: 2.5rem 2rem;
+    height: 100%;
+    position: relative;
+    overflow: hidden;
+    border: 1px solid $border-muted;
+    box-shadow: $shadow-card;
+
+    &::before {
+      content: "";
+      position: absolute;
+      top: 0;
+      left: 0;
+      right: 0;
+      height: 3px;
+      background: linear-gradient(
+        90deg,
+        transparent,
+        $primary-color,
+        transparent
+      );
+    }
+
+    h3 {
+      color: $secondary-color;
+      font-size: 1.3rem;
+      font-weight: 700;
+      margin-bottom: 0.6rem;
+    }
+
+    &__intro {
+      color: lighten($secondary-color, 25%) !important;
+      font-size: 0.92rem !important;
+      line-height: 1.75 !important;
+      margin-bottom: 2rem !important;
+    }
+
+    &__item {
+      display: flex;
+      align-items: flex-start;
+      gap: 16px;
+      margin-bottom: 1.75rem;
+      padding-bottom: 1.75rem;
+      border-bottom: 1px solid $border-muted;
+
+      &:last-child {
+        margin-bottom: 0;
+        padding-bottom: 0;
+        border-bottom: none;
+      }
+    }
+
+    &__icon {
+      width: 46px;
+      height: 46px;
+      border-radius: 12px;
+      background: $primary-light;
+      border: 1px solid rgba($primary-color, 0.3);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 1.1rem;
+      flex-shrink: 0;
+
+      i {
+        font-style: normal;
+        line-height: 1;
+      }
+    }
+
+    &__detail {
+      display: flex;
+      flex-direction: column;
+      gap: 3px;
+
+      span {
+        font-size: 0.72rem;
+        font-weight: 700;
+        text-transform: uppercase;
+        letter-spacing: 0.12em;
+        color: $primary-color;
+        margin-bottom: 2px;
+      }
+
+      a {
+        font-size: 0.92rem;
+        color: $secondary-color;
+        transition: color 0.2s ease;
+
+        &:hover {
+          color: $primary-color;
+        }
+      }
+
+      p {
+        font-size: 0.92rem !important;
+        color: lighten($secondary-color, 20%) !important;
+        margin: 0 !important;
+        line-height: 1.6 !important;
+      }
+    }
+  }
+
+  // ── Right — Contact Form ──────────────────
+  .contact-form {
+    background: #ffffff;
+    border-radius: 20px;
+    padding: 2.5rem 2rem;
+    height: 100%;
+    position: relative;
+    overflow: hidden;
+    border: 1px solid $border-muted;
+    box-shadow: $shadow-card;
+
+    &::before {
+      content: "";
+      position: absolute;
+      top: 0;
+      left: 0;
+      right: 0;
+      height: 3px;
+      background: linear-gradient(
+        90deg,
+        transparent,
+        $primary-color,
+        transparent
+      );
+    }
+
+    h3 {
+      color: $secondary-color;
+      font-size: 1.3rem;
+      font-weight: 700;
+      margin-bottom: 0.6rem;
+    }
+
+    &__intro {
+      font-size: 0.92rem;
+      color: lighten($secondary-color, 25%);
+      line-height: 1.75;
+      margin-bottom: 1.75rem;
+    }
+
+    .form-group {
+      display: flex;
+      flex-direction: column;
+      gap: 6px;
+
+      label {
+        font-size: 0.8rem;
+        font-weight: 700;
+        text-transform: uppercase;
+        letter-spacing: 0.08em;
+        color: $secondary-color;
+      }
+    }
+
+    .form-control {
+      width: 100%;
+      padding: 11px 16px;
+      font-size: 0.92rem;
+      font-family: "Rubik", sans-serif;
+      color: $secondary-color;
+      background: #fafaf9;
+      border: 1.5px solid rgba(0, 0, 0, 0.1);
+      border-radius: 10px;
+      outline: none;
+      transition:
+        border-color 0.25s ease,
+        box-shadow 0.25s ease,
+        background 0.25s ease;
+
+      &::placeholder {
+        color: rgba($secondary-color, 0.4);
+        font-size: 0.88rem;
+      }
+
+      &:focus {
+        border-color: $primary-color;
+        background: #ffffff;
+        box-shadow: 0 0 0 3px rgba($primary-color, 0.12);
+      }
+    }
+
+    textarea.form-control {
+      resize: vertical;
+      min-height: 130px;
+    }
+
+    &__submit {
+      display: inline-flex;
+      align-items: center;
+      gap: 10px;
+      width: 100%;
+      justify-content: center;
+      background-color: $primary-color;
+      border: 2px solid $primary-color;
+      color: $text-white;
+      font-size: 0.9rem;
+      font-weight: 700;
+      font-family: "Rubik", sans-serif;
+      text-transform: uppercase;
+      letter-spacing: 0.09em;
+      padding: 14px 32px;
+      border-radius: 10px;
+      cursor: pointer;
+      box-shadow: 0 6px 20px rgba($primary-color, 0.35);
+      transition: all 0.25s ease;
+      margin-top: 0.5rem;
+
+      &:hover {
+        background-color: $secondary-color;
+        border-color: $secondary-color;
+        transform: translateY(-2px);
+        box-shadow: 0 10px 28px rgba($secondary-color, 0.3);
+      }
+
+      &:active {
+        transform: translateY(0);
+      }
+    }
+  }
+
+  // ── Responsive ────────────────────────────
+  @media (max-width: 991px) {
+    .contact-info,
+    .contact-form {
+      padding: 2rem 1.5rem;
+    }
+  }
+
+  @media (max-width: 767px) {
+    padding: 50px 0;
+
+    .contact-form {
+      &__submit {
+        font-size: 0.85rem;
+        padding: 13px 24px;
+      }
+    }
   }
 }
