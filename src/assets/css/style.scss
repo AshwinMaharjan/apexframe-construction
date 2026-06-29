@@ -1,0 +1,4119 @@
+
+
+// ============================================
+// Global Colors
+// ============================================
+$primary-color: #d97706;
+$secondary-color: #374151;
+$text-color: #000000;
+$text-white: #ffffff;
+$dark-background: #222725;
+$light-background: #554c4c;
+
+// ============================================
+// Derived / Supporting Tokens
+// ============================================
+$primary-light: rgba($primary-color, 0.12);
+$primary-glow: rgba($primary-color, 0.35);
+$border-light: rgba(255, 255, 255, 0.08);
+$border-muted: rgba(0, 0, 0, 0.08);
+$shadow-card: 0 8px 40px rgba(0, 0, 0, 0.1);
+$shadow-strong: 0 20px 60px rgba(0, 0, 0, 0.18);
+
+// ============================================
+// Typography
+// ============================================
+@import url("https://fonts.googleapis.com/css2?family=Rubik:ital,wght@0,300..900;1,300..900&display=swap");
+
+* {
+  box-sizing: border-box;
+}
+
+body {
+  font-family: "Rubik", sans-serif;
+  color: $text-color;
+  overflow-x: hidden;
+}
+
+h1 {
+  font-size: clamp(2.4rem, 5.5vw, 4.5rem);
+  font-weight: 800;
+  line-height: 1.1;
+  letter-spacing: -0.02em;
+}
+
+h2 {
+  font-size: clamp(1.8rem, 3.5vw, 3rem);
+  font-weight: 700;
+  line-height: 1.2;
+  letter-spacing: -0.01em;
+}
+
+// h3 {
+//   font-size: 1.25rem;
+//   font-weight: 700;
+//   letter-spacing: 0.03em;
+//   text-transform: uppercase;
+// }
+
+p {
+  font-size: 1.05rem;
+  line-height: 1.8;
+  color: lighten($text-color, 30%);
+}
+
+a {
+  text-decoration: none;
+  transition: color 0.25s ease;
+}
+
+// ============================================
+// HEADER / NAV
+// ============================================
+header {
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  z-index: 1000;
+  background: rgba(255, 255, 255, 0.96);
+  backdrop-filter: blur(12px);
+  -webkit-backdrop-filter: blur(12px);
+  border-bottom: 1px solid $border-muted;
+  box-shadow: 0 2px 20px rgba(0, 0, 0, 0.06);
+
+  .container {
+    padding-top: 0.6rem !important;
+    padding-bottom: 0.6rem !important;
+  }
+
+  nav {
+    .logo {
+      font-size: 1.35rem;
+      text-transform: uppercase;
+      font-weight: 800;
+      letter-spacing: 0.04em;
+      color: $secondary-color;
+
+      span {
+        color: $primary-color;
+        position: relative;
+
+        &::after {
+          content: "";
+          position: absolute;
+          bottom: -2px;
+          left: 0;
+          width: 100%;
+          height: 2px;
+          background: $primary-color;
+          border-radius: 2px;
+        }
+      }
+    }
+
+    .nav-link {
+      font-size: 0.82rem;
+      color: $secondary-color;
+      text-transform: uppercase;
+      font-weight: 600;
+      letter-spacing: 0.08em;
+      margin-left: 8px;
+      padding: 6px 14px !important;
+      border-radius: 6px;
+      transition:
+        background 0.2s ease,
+        color 0.2s ease;
+      position: relative;
+
+      &::after {
+        content: "";
+        position: absolute;
+        bottom: 2px;
+        left: 14px;
+        right: 14px;
+        height: 2px;
+        background: $primary-color;
+        border-radius: 2px;
+        transform: scaleX(0);
+        transform-origin: left;
+        transition: transform 0.25s ease;
+      }
+
+      &:hover {
+        color: $primary-color;
+        background: $primary-light;
+
+        &::after {
+          transform: scaleX(1);
+        }
+      }
+    }
+  }
+}
+
+// ============================================
+// SECTION 1 — HERO
+// ============================================
+.section-1 {
+  padding-top: 80px; // offset for fixed header
+
+  .hero {
+    position: relative;
+    min-height: 820px;
+    display: flex;
+    align-items: center;
+    background-image:
+      linear-gradient(
+        120deg,
+        rgba(0, 0, 0, 0.88) 0%,
+        rgba(0, 0, 0, 0.55) 55%,
+        rgba(0, 0, 0, 0.15) 100%
+      ),
+      url("/images/hero-section.png");
+    background-size: cover;
+    background-position: center;
+    background-repeat: no-repeat;
+    color: $text-white;
+    overflow: hidden;
+
+    // Subtle warm vignette at bottom
+    &::after {
+      content: "";
+      position: absolute;
+      bottom: 0;
+      left: 0;
+      right: 0;
+      height: 160px;
+      background: linear-gradient(
+        to top,
+        rgba($dark-background, 0.15),
+        transparent
+      );
+      pointer-events: none;
+    }
+
+    .container-fluid {
+      position: relative;
+      z-index: 2;
+      padding: 0 5vw;
+    }
+
+    .text-center {
+      // Push content left for editorial feel
+      text-align: left !important;
+      max-width: 760px;
+    }
+
+    // Badge / eyebrow label
+    > .container-fluid > .text-center > span,
+    span {
+      display: inline-block;
+      color: $primary-color;
+      font-size: 0.85rem;
+      font-weight: 700;
+      text-transform: uppercase;
+      letter-spacing: 0.15em;
+      margin-bottom: 1rem;
+      padding: 6px 16px;
+      background: rgba($primary-color, 0.15);
+      border: 1px solid rgba($primary-color, 0.4);
+      border-radius: 50px;
+    }
+
+    h1 {
+      color: $text-white;
+      margin-bottom: 1.5rem;
+      text-shadow: 0 2px 20px rgba(0, 0, 0, 0.3);
+
+      br {
+        display: block;
+      }
+    }
+
+    p {
+      color: rgba(255, 255, 255, 0.82);
+      font-size: 1.1rem;
+      line-height: 1.75;
+      margin-bottom: 2.4rem;
+      max-width: 580px;
+    }
+
+    .btn-primary {
+      display: inline-flex;
+      align-items: center;
+      gap: 8px;
+      background-color: $primary-color;
+      border: 2px solid $primary-color;
+      padding: 14px 32px;
+      font-size: 0.9rem;
+      font-weight: 700;
+      text-transform: uppercase;
+      letter-spacing: 0.08em;
+      border-radius: 8px;
+      color: $text-white;
+      box-shadow: 0 6px 24px rgba($primary-color, 0.45);
+      transition: all 0.25s ease;
+
+      &:hover {
+        background-color: darken($primary-color, 8%);
+        border-color: darken($primary-color, 8%);
+        transform: translateY(-2px);
+        box-shadow: 0 10px 32px rgba($primary-color, 0.5);
+      }
+
+      &:active {
+        transform: translateY(0);
+      }
+    }
+
+    .btn-secondary {
+      display: inline-flex;
+      align-items: center;
+      gap: 8px;
+      background-color: transparent;
+      border: 2px solid rgba(255, 255, 255, 0.55);
+      padding: 14px 32px;
+      font-size: 0.9rem;
+      font-weight: 700;
+      text-transform: uppercase;
+      letter-spacing: 0.08em;
+      border-radius: 8px;
+      color: $text-white;
+      transition: all 0.25s ease;
+
+      &:hover {
+        background-color: $secondary-color;
+        border-color: $secondary-color;
+        transform: translateY(-2px);
+        box-shadow: 0 10px 32px rgba($secondary-color, 0.4);
+      }
+
+      &:active {
+        transform: translateY(0);
+      }
+    }
+  }
+
+  // ─── Stats Bar ────────────────────────────
+  .stats-bar {
+    background: $dark-background;
+    padding: 28px 0;
+
+    .stat-item {
+      text-align: center;
+      border-right: 1px solid rgba(255, 255, 255, 0.08);
+      padding: 8px 0;
+
+      &:last-child {
+        border-right: none;
+      }
+
+      .stat-number {
+        display: block;
+        font-size: 2.2rem;
+        font-weight: 800;
+        color: $primary-color;
+        line-height: 1;
+        margin-bottom: 4px;
+      }
+
+      .stat-label {
+        font-size: 0.8rem;
+        font-weight: 500;
+        text-transform: uppercase;
+        letter-spacing: 0.1em;
+        color: rgba(255, 255, 255, 0.55);
+      }
+    }
+  }
+}
+
+// ============================================
+// SECTION 2 — ABOUT US
+// ============================================
+.section-2 {
+  background: #fafaf9;
+  position: relative;
+  overflow: hidden;
+
+  // Subtle decorative background accent
+  &::before {
+    content: "";
+    position: absolute;
+    top: -120px;
+    right: -120px;
+    width: 480px;
+    height: 480px;
+    background: radial-gradient(
+      circle,
+      rgba($primary-color, 0.07) 0%,
+      transparent 70%
+    );
+    border-radius: 50%;
+    pointer-events: none;
+  }
+
+  .row {
+    align-items: center;
+    gap: 0;
+  }
+
+  // Image column
+  .col-md-6:first-child {
+    position: relative;
+
+    &::before {
+      content: "";
+      position: absolute;
+      top: 20px;
+      left: 20px;
+      right: -20px;
+      bottom: -20px;
+      background: $primary-light;
+      border-radius: 34px;
+      z-index: 0;
+    }
+
+    img {
+      position: relative;
+      z-index: 1;
+      width: 100%;
+      border-radius: 28px;
+      box-shadow: $shadow-strong;
+      transition: transform 0.4s ease;
+
+      &:hover {
+        transform: scale(1.015);
+      }
+    }
+  }
+
+  // Text column
+  .col-md-6:last-child {
+    padding-left: clamp(1.5rem, 4vw, 4rem);
+  }
+
+  span {
+    display: inline-block;
+    color: $primary-color;
+    font-size: 0.82rem;
+    font-weight: 700;
+    text-transform: uppercase;
+    letter-spacing: 0.14em;
+    margin-bottom: 1rem;
+    padding: 5px 14px;
+    background: $primary-light;
+    border: 1px solid rgba($primary-color, 0.3);
+    border-radius: 50px;
+  }
+
+  p {
+    font-size: 1rem;
+    line-height: 1.85;
+    color: lighten($secondary-color, 20%);
+    text-align: left;
+    text-align: center;
+    margin-bottom: 1.2rem;
+
+    &:last-of-type {
+      margin-bottom: 2rem;
+    }
+  }
+
+  // Feature pills / checkmarks
+  .feature-list {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 10px;
+    margin-bottom: 2rem;
+    list-style: none;
+    padding: 0;
+    margin-top: 0;
+
+    li {
+      display: flex;
+      align-items: center;
+      gap: 8px;
+      font-size: 0.9rem;
+      font-weight: 600;
+      color: $secondary-color;
+      background: #fff;
+      border: 1px solid $border-muted;
+      padding: 7px 16px;
+      border-radius: 50px;
+      box-shadow: 0 2px 8px rgba(0, 0, 0, 0.05);
+
+      &::before {
+        content: "✓";
+        color: $primary-color;
+        font-weight: 800;
+        font-size: 0.85rem;
+      }
+    }
+  }
+
+  .btn-primary {
+    display: inline-flex;
+    align-items: center;
+    gap: 10px;
+    background-color: $primary-color;
+    border: 2px solid $primary-color;
+    padding: 13px 30px;
+    font-size: 0.9rem;
+    font-weight: 700;
+    text-transform: uppercase;
+    letter-spacing: 0.07em;
+    border-radius: 8px;
+    color: $text-white;
+    box-shadow: 0 6px 20px rgba($primary-color, 0.35);
+    transition: all 0.25s ease;
+
+    &:hover {
+      background-color: $secondary-color;
+      border-color: $secondary-color;
+      transform: translateY(-2px);
+      box-shadow: 0 10px 28px rgba($secondary-color, 0.35);
+    }
+  }
+}
+
+// ============================================
+// CARD HOVER OVERLAY — Services & Projects
+// ============================================
+.section-2,
+.section-3 {
+  .item {
+    position: relative;
+    overflow: hidden;
+    border-radius: 12px;
+    cursor: pointer;
+
+    .service-image {
+      img {
+        display: block;
+        width: 100%;
+        height: 280px;
+        object-fit: cover;
+        transition: transform 0.4s ease;
+      }
+    }
+
+    &:hover .service-image img {
+      transform: scale(1.06);
+    }
+
+    // Overlay wrapper sits on top of the image
+    .service-overlay {
+      position: absolute;
+      inset: 0;
+      display: flex;
+      flex-direction: column;
+      justify-content: flex-end;
+    }
+
+    // Title always visible at the bottom
+    .overlay-title {
+      padding: 18px 16px 16px;
+      background: linear-gradient(
+        to top,
+        rgba(0, 0, 0, 0.78) 0%,
+        transparent 100%
+      );
+      color: $text-white;
+      font-size: 1rem;
+      font-weight: 700;
+      text-transform: uppercase;
+      letter-spacing: 0.05em;
+      transition:
+        transform 0.35s ease,
+        opacity 0.35s ease;
+      position: relative;
+      z-index: 1;
+    }
+
+    // Full overlay slides up on hover
+    .overlay-body {
+      position: absolute;
+      inset: 0;
+      background: rgba(0, 0, 0, 0.75);
+      display: flex;
+      flex-direction: column;
+      align-items: flex-start;
+      justify-content: flex-end;
+      padding: 24px 20px;
+      transform: translateY(100%);
+      transition: transform 0.38s cubic-bezier(0.25, 0.8, 0.25, 1);
+      z-index: 2;
+
+      h3 {
+        color: $primary-color;
+        font-size: 0.85rem;
+        text-transform: uppercase;
+        letter-spacing: 0.1em;
+        margin-bottom: 10px;
+      }
+
+      p {
+        color: rgba(255, 255, 255, 0.85);
+        font-size: 0.88rem;
+        line-height: 1.65;
+        margin-bottom: 18px;
+      }
+
+      .btn-primary {
+        font-size: 0.78rem;
+        padding: 9px 20px;
+        background-color: $primary-color;
+        border: 2px solid $primary-color;
+        border-radius: 6px;
+        color: $text-white;
+        font-weight: 700;
+        text-transform: uppercase;
+        letter-spacing: 0.08em;
+        transition: background 0.2s ease;
+
+        &:hover {
+          background-color: darken($primary-color, 8%);
+          border-color: darken($primary-color, 8%);
+        }
+      }
+    }
+
+    // Hover state: slide overlay up, fade title out
+    &:hover .overlay-body {
+      transform: translateY(0);
+    }
+
+    &:hover .overlay-title {
+      opacity: 0;
+      transform: translateY(16px);
+    }
+  }
+}
+// ============================================
+// SECTION TITLE — shared center alignment
+// ============================================
+.section-title {
+  text-align: center;
+  max-width: 680px;
+  margin: 0 auto 3rem;
+
+  span {
+    display: inline-block;
+    color: $primary-color;
+    font-size: 0.82rem;
+    font-weight: 700;
+    text-transform: uppercase;
+    letter-spacing: 0.14em;
+    margin-bottom: 0.75rem;
+    padding: 5px 14px;
+    background: $primary-light;
+    border: 1px solid rgba($primary-color, 0.3);
+    border-radius: 50px;
+  }
+
+  h2,
+  h3 {
+    color: $secondary-color;
+    margin-bottom: 1rem;
+  }
+
+  p {
+    color: lighten($secondary-color, 20%);
+    font-size: 1rem;
+    line-height: 1.8;
+  }
+}
+
+// ============================================
+// SECTION 4 — Why Choose Us
+// ============================================
+.section-4 {
+  background: #fafaf9;
+  padding: 80px 0;
+
+  .feature-item {
+    text-align: center;
+    padding: 2rem 1.5rem;
+    border-radius: 14px;
+    transition:
+      box-shadow 0.3s ease,
+      transform 0.3s ease;
+    background: #fff;
+    border: 1px solid $border-muted;
+
+    &:hover {
+      box-shadow: $shadow-card;
+      transform: translateY(-6px);
+    }
+
+    .feature-icon {
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      font-style: normal;
+      font-size: 2rem;
+      width: 64px;
+      height: 64px;
+      background: $primary-light;
+      border-radius: 50%;
+      margin-bottom: 1.25rem;
+    }
+
+    h3 {
+      color: $secondary-color;
+      font-size: 1rem;
+      font-weight: 700;
+      text-transform: uppercase;
+      letter-spacing: 0.06em;
+      margin-bottom: 0.75rem;
+    }
+
+    p {
+      font-size: 0.95rem;
+      line-height: 1.75;
+      color: lighten($secondary-color, 20%);
+      margin: 0;
+    }
+  }
+}
+
+// ============================================
+// ALTERNATING SECTION BACKGROUNDS
+// ============================================
+.section-2 {
+  background: #ffffff;
+}
+
+.section-3 {
+  background: #f5f7fa;
+}
+
+.section-4 {
+  background: #ffffff;
+}
+.section-5 {
+  background: #f5f7fa;
+}
+.section-6 {
+  background: #ffffff;
+}
+
+// ============================================
+// VIEW ALL BUTTONS — centered
+// ============================================
+.section-2,
+.section-3 {
+  .text-center.mt-4 {
+    padding-bottom: 1rem;
+
+    .btn-primary {
+      display: inline-flex;
+      align-items: center;
+      gap: 8px;
+      background-color: $primary-color;
+      border: 2px solid $primary-color;
+      padding: 13px 32px;
+      font-size: 0.9rem;
+      font-weight: 700;
+      text-transform: uppercase;
+      letter-spacing: 0.08em;
+      border-radius: 8px;
+      color: $text-white;
+      box-shadow: 0 6px 20px rgba($primary-color, 0.35);
+      transition: all 0.25s ease;
+
+      &:hover {
+        background-color: $secondary-color;
+        border-color: $secondary-color;
+        transform: translateY(-2px);
+        box-shadow: 0 10px 28px rgba($secondary-color, 0.35);
+      }
+    }
+  }
+}
+// FOOTER
+// ============================================
+footer {
+  background-color: $dark-background;
+  color: rgba(255, 255, 255, 0.7);
+  padding: 72px 0 0;
+  position: relative;
+  overflow: hidden;
+
+  // Decorative top border
+  &::before {
+    content: "";
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    height: 3px;
+    background: linear-gradient(
+      90deg,
+      transparent,
+      $primary-color,
+      transparent
+    );
+  }
+
+  // Large faint background text
+  &::after {
+    content: "APEXFRAME";
+    position: absolute;
+    bottom: 60px;
+    left: 50%;
+    transform: translateX(-50%);
+    font-size: clamp(4rem, 10vw, 8rem);
+    font-weight: 900;
+    letter-spacing: 0.15em;
+    color: rgba(255, 255, 255, 0.025);
+    white-space: nowrap;
+    pointer-events: none;
+    user-select: none;
+  }
+
+  .container {
+    position: relative;
+    z-index: 2;
+  }
+
+  .row {
+    padding-bottom: 48px;
+  }
+
+  h3 {
+    font-size: 0.8rem;
+    font-weight: 700;
+    text-transform: uppercase;
+    letter-spacing: 0.14em;
+    color: $text-white;
+    margin-bottom: 1.4rem;
+    position: relative;
+    padding-bottom: 12px;
+
+    &::after {
+      content: "";
+      position: absolute;
+      bottom: 0;
+      left: 0;
+      width: 28px;
+      height: 2px;
+      background: $primary-color;
+      border-radius: 2px;
+    }
+  }
+
+  // Brand column
+  .col-md-3:first-child {
+    h3 {
+      font-size: 1.4rem;
+      text-transform: none;
+      letter-spacing: 0.03em;
+      color: $text-white;
+
+      &::after {
+        display: none;
+      }
+
+      span {
+        color: $primary-color;
+      }
+    }
+
+    p {
+      font-size: 0.92rem;
+      line-height: 1.75;
+      color: rgba(255, 255, 255, 0.55);
+      margin-bottom: 1.5rem;
+    }
+
+    // Social icons row placeholder
+    .social-links {
+      display: flex;
+      gap: 10px;
+
+      a {
+        width: 36px;
+        height: 36px;
+        border-radius: 8px;
+        background: rgba(255, 255, 255, 0.06);
+        border: 1px solid rgba(255, 255, 255, 0.1);
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        color: rgba(255, 255, 255, 0.6);
+        font-size: 0.85rem;
+        transition: all 0.2s ease;
+
+        &:hover {
+          background: $primary-color;
+          border-color: $primary-color;
+          color: $text-white;
+        }
+      }
+    }
+  }
+
+  ul {
+    list-style: none;
+    padding: 0;
+    margin: 0;
+
+    li {
+      margin-bottom: 10px;
+
+      a {
+        font-size: 0.92rem;
+        color: rgba(255, 255, 255, 0.55);
+        transition:
+          color 0.2s ease,
+          padding-left 0.2s ease;
+        display: inline-block;
+        position: relative;
+
+        &::before {
+          content: "→";
+          position: absolute;
+          left: -16px;
+          opacity: 0;
+          color: $primary-color;
+          transition:
+            opacity 0.2s ease,
+            left 0.2s ease;
+          font-size: 0.8rem;
+        }
+
+        &:hover {
+          color: $primary-color;
+          padding-left: 18px;
+
+          &::before {
+            opacity: 1;
+            left: 0;
+          }
+        }
+      }
+    }
+  }
+
+  // Copyright bar
+  .footer-bottom {
+    border-top: 1px solid rgba(255, 255, 255, 0.06);
+    padding: 20px 0;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    flex-wrap: wrap;
+    gap: 10px;
+
+    p {
+      font-size: 0.82rem;
+      color: rgba(255, 255, 255, 0.35);
+      margin: 0;
+    }
+
+    a {
+      font-size: 0.82rem;
+      color: rgba(255, 255, 255, 0.35);
+
+      &:hover {
+        color: $primary-color;
+      }
+    }
+  }
+}
+
+// ============================================
+// RESPONSIVE ADJUSTMENTS
+// ============================================
+@media (max-width: 991px) {
+  header {
+    nav {
+      .nav-link {
+        margin-left: 0;
+        padding: 10px 14px !important;
+        border-bottom: 1px solid $border-muted;
+      }
+
+      .navbar-collapse {
+        background: #fff;
+        border-radius: 12px;
+        padding: 10px;
+        margin-top: 10px;
+        box-shadow: $shadow-card;
+      }
+    }
+  }
+
+  .section-1 .hero .text-center {
+    text-align: center !important;
+    max-width: 100%;
+
+    p {
+      max-width: 100%;
+    }
+  }
+
+  .section-2 {
+    .col-md-6:first-child::before {
+      display: none;
+    }
+
+    .col-md-6:last-child {
+      padding-left: 1rem;
+      padding-top: 2.5rem;
+    }
+  }
+
+  footer {
+    &::after {
+      display: none;
+    }
+
+    .col-md-3 {
+      margin-bottom: 2rem;
+    }
+  }
+}
+
+@media (max-width: 767px) {
+  .section-1 .hero {
+    min-height: 640px;
+
+    .btn-primary,
+    .btn-secondary {
+      display: block;
+      width: 100%;
+      text-align: center;
+      margin-left: 0 !important;
+      margin-bottom: 0.75rem;
+    }
+  }
+
+  .section-1 .stats-bar .stat-item {
+    border-right: none;
+    border-bottom: 1px solid rgba(255, 255, 255, 0.08);
+    padding: 12px 0;
+
+    &:last-child {
+      border-bottom: none;
+    }
+  }
+
+  footer .footer-bottom {
+    justify-content: center;
+    text-align: center;
+  }
+}
+
+// ============================================
+// SECTION 5 — Testimonials
+// ============================================
+.section-5 {
+  padding: 80px 0;
+  .swiper {
+    padding-bottom: 60px;
+  }
+  .swiper-pagination-bullet-active {
+    background: $primary-color;
+  }
+  .feature-item {
+    height: 100%;
+    min-height: 320px;
+
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    background: #fff;
+    border: 1px solid $border-muted;
+    border-radius: 14px;
+    padding: 2rem 1.5rem;
+    position: relative;
+    transition:
+      box-shadow 0.3s ease,
+      transform 0.3s ease;
+
+    &:hover {
+      box-shadow: $shadow-card;
+      transform: translateY(-6px);
+    }
+
+    // Opening quote mark
+    &::before {
+      content: "\201C";
+      position: absolute;
+      top: 16px;
+      left: 20px;
+      font-size: 4rem;
+      line-height: 1;
+      color: rgba($primary-color, 0.15);
+      font-family: Georgia, serif;
+      pointer-events: none;
+    }
+
+    .rating {
+      display: flex;
+      gap: 4px;
+      margin-bottom: 1rem;
+
+      span {
+        font-size: 1rem;
+      }
+    }
+    .swiper-slide {
+      height: auto;
+    }
+
+    .swiper-wrapper {
+      align-items: stretch;
+    }
+    .testimonial-text {
+      display: -webkit-box;
+      -webkit-box-orient: vertical;
+      overflow: hidden;
+
+      min-height: 110px;
+      display: block;
+      font-size: 0.95rem;
+      line-height: 1.75;
+      color: lighten($secondary-color, 20%);
+      font-style: italic;
+      margin-bottom: 1.5rem;
+    }
+
+    // Reviewer info (name + role)
+    .reviewer {
+      display: flex;
+      align-items: center;
+      gap: 12px;
+      margin-top: auto;
+
+      .avatar {
+        width: 50px;
+        height: 50px;
+        border-radius: 50%;
+        background: $primary-light;
+        border: 2px solid rgba($primary-color, 0.3);
+        overflow: hidden;
+        flex-shrink: 0;
+
+        img {
+          width: 100%;
+          height: 100%;
+          object-fit: cover;
+        }
+      }
+
+      .reviewer-info {
+        .name {
+          display: block;
+          font-size: 0.88rem;
+          font-weight: 700;
+          color: $secondary-color;
+          text-transform: uppercase;
+          letter-spacing: 0.05em;
+        }
+
+        .role {
+          display: block;
+          font-size: 0.8rem;
+          color: $primary-color;
+          font-weight: 500;
+        }
+      }
+    }
+  }
+
+  // Row spacing between cards
+  .row {
+    gap: 0;
+
+    [class*="col-"] {
+      margin-bottom: 1.5rem;
+    }
+  }
+}
+
+// ============================================
+// SECTION 5 — Responsive
+// ============================================
+@media (max-width: 767px) {
+  .section-5 {
+    padding: 50px 0;
+
+    .feature-item {
+      margin-bottom: 1.25rem;
+    }
+  }
+}
+// ============================================
+// SECTION 6 — Blogs & Articles
+// ============================================
+.section-6 {
+  padding: 80px 0;
+  position: relative;
+
+  .blog-card {
+    background: #fff;
+    border-radius: 18px;
+    overflow: hidden;
+    border: 1px solid $border-muted;
+    height: 100%;
+    transition:
+      transform 0.35s ease,
+      box-shadow 0.35s ease;
+
+    &:hover {
+      transform: translateY(-8px);
+      box-shadow: $shadow-card;
+    }
+
+    &:hover .blog-image img {
+      transform: scale(1.08);
+    }
+
+    .blog-image {
+      position: relative;
+      overflow: hidden;
+
+      img {
+        width: 100%;
+        height: 260px;
+        object-fit: cover;
+        transition: transform 0.45s ease;
+      }
+
+      &::after {
+        content: "";
+        position: absolute;
+        inset: 0;
+        background: linear-gradient(to top, rgba(0, 0, 0, 0.15), transparent);
+      }
+    }
+
+    .blog-content {
+      padding: 1.8rem;
+      text-align: center;
+
+      .blog-category {
+        display: inline-block;
+        margin-bottom: 1rem;
+        padding: 6px 14px;
+
+        background: $primary-light;
+        border: 1px solid rgba($primary-color, 0.25);
+
+        color: $primary-color;
+        font-size: 0.75rem;
+        font-weight: 700;
+        text-transform: uppercase;
+        letter-spacing: 0.08em;
+
+        border-radius: 50px;
+      }
+
+      h3 {
+        font-size: 1.25rem;
+        font-weight: 700;
+        line-height: 1.45;
+        color: $secondary-color;
+        margin-bottom: 1rem;
+        transition: color 0.25s ease;
+      }
+
+      p {
+        font-size: 0.95rem;
+        line-height: 1.8;
+        color: lighten($secondary-color, 18%);
+        margin-bottom: 1.5rem;
+        -webkit-box-orient: vertical;
+        overflow: hidden;
+      }
+
+      .read-more-btn {
+        display: inline-flex;
+        align-items: center;
+        gap: 8px;
+
+        color: $primary-color;
+        font-size: 0.85rem;
+        font-weight: 700;
+        text-transform: uppercase;
+        letter-spacing: 0.08em;
+
+        position: relative;
+        transition: all 0.25s ease;
+
+        &::after {
+          content: "→";
+          transition: transform 0.25s ease;
+        }
+
+        &:hover {
+          color: darken($primary-color, 10%);
+        }
+
+        &:hover::after {
+          transform: translateX(4px);
+        }
+      }
+    }
+  }
+
+  // View all button
+  .text-center.mt-5 {
+    .btn-primary {
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+
+      padding: 14px 34px;
+
+      background: $primary-color;
+      border: 2px solid $primary-color;
+
+      color: $text-white;
+      font-size: 0.9rem;
+      font-weight: 700;
+      text-transform: uppercase;
+      letter-spacing: 0.08em;
+
+      border-radius: 10px;
+
+      box-shadow: 0 8px 24px rgba($primary-color, 0.3);
+
+      transition: all 0.3s ease;
+
+      &:hover {
+        background: $secondary-color;
+        border-color: $secondary-color;
+        transform: translateY(-3px);
+        box-shadow: 0 12px 30px rgba($secondary-color, 0.3);
+      }
+    }
+  }
+}
+
+// ============================================
+// Responsive
+// ============================================
+@media (max-width: 991px) {
+  .section-6 {
+    .blog-card {
+      .blog-image img {
+        height: 240px;
+      }
+    }
+  }
+}
+
+@media (max-width: 767px) {
+  .section-6 {
+    padding: 60px 0;
+
+    .blog-card {
+      .blog-image img {
+        height: 220px;
+      }
+
+      .blog-content {
+        padding: 1.5rem;
+
+        h3 {
+          font-size: 1.1rem;
+        }
+
+        p {
+          font-size: 0.9rem;
+        }
+      }
+    }
+
+    .text-center.mt-5 {
+      .btn-primary {
+        width: 100%;
+      }
+    }
+  }
+}
+
+.section-7 {
+  padding-top: 80px; // offset for fixed header
+
+  .hero {
+    position: relative;
+    min-height: 500px;
+    display: flex;
+    align-items: center;
+    background-image:
+      linear-gradient(
+        120deg,
+        rgba(0, 0, 0, 0.88) 0%,
+        rgba(0, 0, 0, 0.55) 55%,
+        rgba(0, 0, 0, 0.15) 100%
+      ),
+      url("/images/hero-section.png");
+    background-size: cover;
+    background-position: center;
+    background-repeat: no-repeat;
+    color: $text-white;
+    overflow: hidden;
+
+    // Subtle warm vignette at bottom
+    &::after {
+      content: "";
+      position: absolute;
+      bottom: 0;
+      left: 0;
+      right: 0;
+      height: 160px;
+      background: linear-gradient(
+        to top,
+        rgba($dark-background, 0.15),
+        transparent
+      );
+      pointer-events: none;
+    }
+
+    .container-fluid {
+      position: relative;
+      z-index: 2;
+      padding: 0 5vw;
+    }
+
+    .text-center {
+      // Push content left for editorial feel
+      text-align: left !important;
+      max-width: 760px;
+    }
+
+    // Badge / eyebrow label
+    > .container-fluid > .text-center > span,
+    span {
+      display: inline-block;
+      color: $primary-color;
+      font-size: 0.85rem;
+      font-weight: 700;
+      text-transform: uppercase;
+      letter-spacing: 0.15em;
+      margin-bottom: 1rem;
+      padding: 6px 16px;
+      background: rgba($primary-color, 0.15);
+      border: 1px solid rgba($primary-color, 0.4);
+      border-radius: 50px;
+    }
+
+    h1 {
+      color: $text-white;
+      margin-bottom: 1.5rem;
+      text-shadow: 0 2px 20px rgba(0, 0, 0, 0.3);
+
+      br {
+        display: block;
+      }
+    }
+
+    p {
+      color: rgba(255, 255, 255, 0.82);
+      font-size: 1.1rem;
+      line-height: 1.75;
+      margin-bottom: 2.4rem;
+      max-width: 580px;
+    }
+
+    .btn-primary {
+      display: inline-flex;
+      align-items: center;
+      gap: 8px;
+      background-color: $primary-color;
+      border: 2px solid $primary-color;
+      padding: 14px 32px;
+      font-size: 0.9rem;
+      font-weight: 700;
+      text-transform: uppercase;
+      letter-spacing: 0.08em;
+      border-radius: 8px;
+      color: $text-white;
+      box-shadow: 0 6px 24px rgba($primary-color, 0.45);
+      transition: all 0.25s ease;
+
+      &:hover {
+        background-color: darken($primary-color, 8%);
+        border-color: darken($primary-color, 8%);
+        transform: translateY(-2px);
+        box-shadow: 0 10px 32px rgba($primary-color, 0.5);
+      }
+
+      &:active {
+        transform: translateY(0);
+      }
+    }
+
+    .btn-secondary {
+      display: inline-flex;
+      align-items: center;
+      gap: 8px;
+      background-color: transparent;
+      border: 2px solid rgba(255, 255, 255, 0.55);
+      padding: 14px 32px;
+      font-size: 0.9rem;
+      font-weight: 700;
+      text-transform: uppercase;
+      letter-spacing: 0.08em;
+      border-radius: 8px;
+      color: $text-white;
+      transition: all 0.25s ease;
+
+      &:hover {
+        background-color: $secondary-color;
+        border-color: $secondary-color;
+        transform: translateY(-2px);
+        box-shadow: 0 10px 32px rgba($secondary-color, 0.4);
+      }
+
+      &:active {
+        transform: translateY(0);
+      }
+    }
+  }
+}
+
+// ============================================
+// SECTION 8 — About Us Detail
+// ============================================
+.section-8 {
+  background: #fafaf9;
+  position: relative;
+  overflow: hidden;
+
+  // Decorative radial accent (mirrors section-2)
+  &::before {
+    content: "";
+    position: absolute;
+    top: -100px;
+    left: -100px;
+    width: 420px;
+    height: 420px;
+    background: radial-gradient(
+      circle,
+      rgba($primary-color, 0.07) 0%,
+      transparent 70%
+    );
+    border-radius: 50%;
+    pointer-events: none;
+  }
+
+  // ── Image column ──────────────────────────
+  &__image-col {
+    position: relative;
+
+    // Offset shadow box behind the image
+    &::before {
+      content: "";
+      position: absolute;
+      top: 20px;
+      left: 20px;
+      right: -20px;
+      bottom: -20px;
+      background: $primary-light;
+      border-radius: 34px;
+      z-index: 0;
+    }
+
+    img {
+      position: relative;
+      z-index: 1;
+      width: 100%;
+      border-radius: 28px;
+      box-shadow: $shadow-strong;
+      object-fit: cover;
+      display: block;
+      transition: transform 0.4s ease;
+
+      &:hover {
+        transform: scale(1.015);
+      }
+    }
+  }
+
+  // ── Content column ────────────────────────
+  &__content-col {
+    padding-left: clamp(1.5rem, 4vw, 4rem);
+
+    span {
+      display: inline-block;
+      color: $primary-color;
+      font-size: 0.82rem;
+      font-weight: 700;
+      text-transform: uppercase;
+      letter-spacing: 0.14em;
+      margin-bottom: 1rem;
+      padding: 5px 14px;
+      background: $primary-light;
+      border: 1px solid rgba($primary-color, 0.3);
+      border-radius: 50px;
+    }
+
+    h2 {
+      color: $secondary-color;
+      margin-bottom: 1.25rem;
+    }
+
+    p {
+      font-size: 1rem;
+      line-height: 1.85;
+      color: lighten($secondary-color, 20%);
+      margin-bottom: 1.1rem;
+
+      &:last-of-type {
+        margin-bottom: 1.75rem;
+      }
+    }
+
+    // Reuse .feature-list pattern from section-2
+    .feature-list {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 10px;
+      margin-bottom: 2rem;
+      list-style: none;
+      padding: 0;
+
+      li {
+        display: flex;
+        align-items: center;
+        gap: 8px;
+        font-size: 0.9rem;
+        font-weight: 600;
+        color: $secondary-color;
+        background: #fff;
+        border: 1px solid $border-muted;
+        padding: 7px 16px;
+        border-radius: 50px;
+        box-shadow: 0 2px 8px rgba(0, 0, 0, 0.05);
+
+        &::before {
+          content: "✓";
+          color: $primary-color;
+          font-weight: 800;
+          font-size: 0.85rem;
+        }
+      }
+    }
+
+    .btn-primary {
+      display: inline-flex;
+      align-items: center;
+      gap: 10px;
+      background-color: $primary-color;
+      border: 2px solid $primary-color;
+      padding: 13px 30px;
+      font-size: 0.9rem;
+      font-weight: 700;
+      text-transform: uppercase;
+      letter-spacing: 0.07em;
+      border-radius: 8px;
+      color: $text-white;
+      box-shadow: 0 6px 20px rgba($primary-color, 0.35);
+      transition: all 0.25s ease;
+
+      &:hover {
+        background-color: $secondary-color;
+        border-color: $secondary-color;
+        transform: translateY(-2px);
+        box-shadow: 0 10px 28px rgba($secondary-color, 0.35);
+      }
+    }
+  }
+
+  // ── Responsive ────────────────────────────
+  @media (max-width: 991px) {
+    &__image-col::before {
+      display: none;
+    }
+
+    &__content-col {
+      padding-left: 1rem;
+      padding-top: 2.5rem;
+    }
+  }
+
+  @media (max-width: 767px) {
+    &__content-col {
+      padding-top: 2rem;
+
+      .btn-primary {
+        width: 100%;
+        justify-content: center;
+      }
+    }
+  }
+}
+
+// ============================================
+// SECTION 9 — Our Team
+// ============================================
+.section-9 {
+  background: #f5f7fa;
+  position: relative;
+  overflow: hidden;
+
+  // Decorative radial accent — top right
+  &::before {
+    content: "";
+    position: absolute;
+    top: -120px;
+    right: -120px;
+    width: 480px;
+    height: 480px;
+    background: radial-gradient(
+      circle,
+      rgba($primary-color, 0.07) 0%,
+      transparent 70%
+    );
+    border-radius: 50%;
+    pointer-events: none;
+  }
+
+  // ── Team Card ─────────────────────────────
+  .team-card {
+    background: #fff;
+    border: 1px solid $border-muted;
+    border-radius: 18px;
+    overflow: hidden;
+    text-align: center;
+    transition:
+      transform 0.35s ease,
+      box-shadow 0.35s ease;
+
+    &:hover {
+      transform: translateY(-8px);
+      box-shadow: $shadow-card;
+
+      .team-card__image img {
+        transform: scale(1.06);
+      }
+
+      .team-card__image::after {
+        opacity: 1;
+      }
+    }
+
+    // ── Image wrapper ──────────────────────
+    &__image {
+      position: relative;
+      overflow: hidden;
+
+      img {
+        width: 100%;
+        height: 300px;
+        object-fit: cover;
+        object-position: top;
+        display: block;
+        transition: transform 0.45s ease;
+      }
+
+      // Amber tint overlay on hover
+      &::after {
+        content: "";
+        position: absolute;
+        inset: 0;
+        background: linear-gradient(
+          to top,
+          rgba($primary-color, 0.45) 0%,
+          transparent 60%
+        );
+        opacity: 0;
+        transition: opacity 0.35s ease;
+        pointer-events: none;
+      }
+    }
+
+    // ── Name & Role strip ──────────────────
+    &__info {
+      padding: 1.1rem 1rem 1.25rem;
+      border-top: 1px solid $border-muted;
+
+      h3 {
+        font-size: 0.95rem;
+        font-weight: 700;
+        color: $secondary-color;
+        text-transform: uppercase;
+        letter-spacing: 0.05em;
+        margin-bottom: 4px;
+      }
+
+      span {
+        display: block;
+        font-size: 0.8rem;
+        font-weight: 500;
+        color: $primary-color;
+        text-transform: uppercase;
+        letter-spacing: 0.08em;
+      }
+    }
+  }
+
+  // ── Responsive ────────────────────────────
+  @media (max-width: 767px) {
+    padding: 50px 0;
+
+    .team-card {
+      &__image img {
+        height: 220px;
+      }
+    }
+  }
+
+  @media (max-width: 480px) {
+    .team-card {
+      &__image img {
+        height: 180px;
+      }
+    }
+  }
+}
+
+// ============================================
+// SECTION 10 — Our Services
+// ============================================
+.section-10 {
+  background: #ffffff;
+  position: relative;
+  overflow: hidden;
+
+  // Decorative radial accent — bottom left
+  &::before {
+    content: "";
+    position: absolute;
+    bottom: -120px;
+    left: -120px;
+    width: 480px;
+    height: 480px;
+    background: radial-gradient(
+      circle,
+      rgba($primary-color, 0.07) 0%,
+      transparent 70%
+    );
+    border-radius: 50%;
+    pointer-events: none;
+  }
+
+  // ── Service Card ──────────────────────────
+  .service-card {
+    position: relative;
+    border-radius: 18px;
+    overflow: hidden;
+    cursor: pointer;
+    background: $dark-background;
+    box-shadow: 0 4px 24px rgba(0, 0, 0, 0.08);
+    transition:
+      transform 0.35s ease,
+      box-shadow 0.35s ease;
+
+    &:hover {
+      transform: translateY(-6px);
+      box-shadow: $shadow-card;
+
+      // Zoom image on hover
+      .service-card__image img {
+        transform: scale(1.07);
+      }
+
+      // Fade image slightly
+      .service-card__image::after {
+        opacity: 1;
+      }
+
+      // Hide title bar
+      .service-card__title {
+        opacity: 0;
+        transform: translateY(12px);
+      }
+
+      // Slide overlay up
+      .service-card__overlay {
+        transform: translateY(0);
+        opacity: 1;
+      }
+    }
+
+    // ── Image ────────────────────────────────
+    &__image {
+      position: relative;
+      overflow: hidden;
+
+      img {
+        width: 100%;
+        height: 340px;
+        object-fit: cover;
+        object-position: center;
+        display: block;
+        transition: transform 0.45s ease;
+      }
+
+      // Dark gradient always present at bottom
+      &::before {
+        content: "";
+        position: absolute;
+        bottom: 0;
+        left: 0;
+        right: 0;
+        height: 50%;
+        background: linear-gradient(
+          to top,
+          rgba(0, 0, 0, 0.72) 0%,
+          transparent 100%
+        );
+        z-index: 1;
+        pointer-events: none;
+      }
+
+      // Extra dark overlay on hover
+      &::after {
+        content: "";
+        position: absolute;
+        inset: 0;
+        background: rgba(0, 0, 0, 0.55);
+        opacity: 0;
+        transition: opacity 0.35s ease;
+        z-index: 2;
+        pointer-events: none;
+      }
+    }
+
+    // ── Title bar (always visible) ────────────
+    &__title {
+      position: absolute;
+      bottom: 0;
+      left: 0;
+      right: 0;
+      padding: 20px 20px 22px;
+      z-index: 3;
+      transition:
+        opacity 0.3s ease,
+        transform 0.3s ease;
+
+      h3 {
+        color: $text-white;
+        font-size: 1rem;
+        font-weight: 700;
+        text-transform: uppercase;
+        letter-spacing: 0.06em;
+        margin: 0;
+        text-shadow: 0 2px 8px rgba(0, 0, 0, 0.4);
+      }
+    }
+
+    // ── Hover Overlay ─────────────────────────
+    &__overlay {
+      position: absolute;
+      inset: 0;
+      background: linear-gradient(
+        160deg,
+        rgba(darken($primary-color, 10%), 0.93) 0%,
+        rgba($dark-background, 0.97) 100%
+      );
+      display: flex;
+      align-items: flex-end;
+      padding: 32px 24px;
+      z-index: 4;
+      transform: translateY(100%);
+      opacity: 0;
+      transition:
+        transform 0.4s cubic-bezier(0.25, 0.8, 0.25, 1),
+        opacity 0.35s ease;
+    }
+
+    &__overlay-inner {
+      width: 100%;
+
+      span {
+        display: inline-block;
+        font-size: 0.72rem;
+        font-weight: 700;
+        text-transform: uppercase;
+        letter-spacing: 0.15em;
+        color: rgba(255, 255, 255, 0.65);
+        margin-bottom: 8px;
+        padding: 4px 12px;
+        border: 1px solid rgba(255, 255, 255, 0.25);
+        border-radius: 50px;
+      }
+
+      h3 {
+        color: $text-white;
+        font-size: 1.05rem;
+        font-weight: 700;
+        text-transform: uppercase;
+        letter-spacing: 0.05em;
+        margin-bottom: 12px;
+      }
+
+      p {
+        color: rgba(255, 255, 255, 0.82);
+        font-size: 0.88rem;
+        line-height: 1.7;
+        margin-bottom: 20px;
+      }
+    }
+
+    // ── Learn More link ───────────────────────
+    &__link {
+      display: inline-flex;
+      align-items: center;
+      gap: 8px;
+      background-color: $primary-color;
+      border: 2px solid $primary-color;
+      color: $text-white;
+      font-size: 0.78rem;
+      font-weight: 700;
+      text-transform: uppercase;
+      letter-spacing: 0.09em;
+      padding: 9px 22px;
+      border-radius: 6px;
+      transition: all 0.25s ease;
+
+      &::after {
+        content: "→";
+        transition: transform 0.25s ease;
+      }
+
+      &:hover {
+        background-color: darken($primary-color, 8%);
+        border-color: darken($primary-color, 8%);
+
+        &::after {
+          transform: translateX(4px);
+        }
+      }
+    }
+  }
+
+  // ── View All Button ───────────────────────
+  .text-center.mt-5 {
+    .btn-primary {
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      gap: 8px;
+      padding: 14px 34px;
+      background: $primary-color;
+      border: 2px solid $primary-color;
+      color: $text-white;
+      font-size: 0.9rem;
+      font-weight: 700;
+      text-transform: uppercase;
+      letter-spacing: 0.08em;
+      border-radius: 10px;
+      box-shadow: 0 8px 24px rgba($primary-color, 0.3);
+      transition: all 0.3s ease;
+
+      &:hover {
+        background: $secondary-color;
+        border-color: $secondary-color;
+        transform: translateY(-3px);
+        box-shadow: 0 12px 30px rgba($secondary-color, 0.3);
+      }
+    }
+  }
+
+  // ── Responsive ────────────────────────────
+  @media (max-width: 991px) {
+    .service-card {
+      &__image img {
+        height: 300px;
+      }
+    }
+  }
+
+  @media (max-width: 767px) {
+    padding: 50px 0;
+
+    .service-card {
+      &__image img {
+        height: 260px;
+      }
+
+      // On touch devices overlay is always partially visible
+      &__overlay {
+        transform: translateY(0);
+        opacity: 1;
+        background: linear-gradient(
+          160deg,
+          rgba(darken($primary-color, 10%), 0.88) 0%,
+          rgba($dark-background, 0.94) 100%
+        );
+      }
+
+      &__title {
+        display: none;
+      }
+    }
+
+    .text-center.mt-5 .btn-primary {
+      width: 100%;
+    }
+  }
+}
+// ============================================
+// SECTION 11 — Contact Us
+// ============================================
+.section-11 {
+  background: #f5f7fa;
+  position: relative;
+  overflow: hidden;
+
+  &::before {
+    content: "";
+    position: absolute;
+    top: -100px;
+    right: -100px;
+    width: 440px;
+    height: 440px;
+    background: radial-gradient(
+      circle,
+      rgba($primary-color, 0.07) 0%,
+      transparent 70%
+    );
+    border-radius: 50%;
+    pointer-events: none;
+  }
+
+  &::after {
+    content: "";
+    position: absolute;
+    bottom: -100px;
+    left: -100px;
+    width: 360px;
+    height: 360px;
+    background: radial-gradient(
+      circle,
+      rgba($primary-color, 0.05) 0%,
+      transparent 70%
+    );
+    border-radius: 50%;
+    pointer-events: none;
+  }
+
+  // ── Left — Contact Info ───────────────────
+  .contact-info {
+    background: #ffffff;
+    border-radius: 20px;
+    padding: 2.5rem 2rem;
+    height: 100%;
+    position: relative;
+    overflow: hidden;
+    border: 1px solid $border-muted;
+    box-shadow: $shadow-card;
+
+    &::before {
+      content: "";
+      position: absolute;
+      top: 0;
+      left: 0;
+      right: 0;
+      height: 3px;
+      background: linear-gradient(
+        90deg,
+        transparent,
+        $primary-color,
+        transparent
+      );
+    }
+
+    h3 {
+      color: $secondary-color;
+      font-size: 1.3rem;
+      font-weight: 700;
+      margin-bottom: 0.6rem;
+    }
+
+    &__intro {
+      color: lighten($secondary-color, 25%) !important;
+      font-size: 0.92rem !important;
+      line-height: 1.75 !important;
+      margin-bottom: 2rem !important;
+    }
+
+    &__item {
+      display: flex;
+      align-items: flex-start;
+      gap: 16px;
+      margin-bottom: 1.75rem;
+      padding-bottom: 1.75rem;
+      border-bottom: 1px solid $border-muted;
+
+      &:last-child {
+        margin-bottom: 0;
+        padding-bottom: 0;
+        border-bottom: none;
+      }
+    }
+
+    &__icon {
+      width: 46px;
+      height: 46px;
+      border-radius: 12px;
+      background: $primary-light;
+      border: 1px solid rgba($primary-color, 0.3);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 1.1rem;
+      flex-shrink: 0;
+
+      i {
+        font-style: normal;
+        line-height: 1;
+      }
+    }
+
+    &__detail {
+      display: flex;
+      flex-direction: column;
+      gap: 3px;
+
+      span {
+        font-size: 0.72rem;
+        font-weight: 700;
+        text-transform: uppercase;
+        letter-spacing: 0.12em;
+        color: $primary-color;
+        margin-bottom: 2px;
+      }
+
+      a {
+        font-size: 0.92rem;
+        color: $secondary-color;
+        transition: color 0.2s ease;
+
+        &:hover {
+          color: $primary-color;
+        }
+      }
+
+      p {
+        font-size: 0.92rem !important;
+        color: lighten($secondary-color, 20%) !important;
+        margin: 0 !important;
+        line-height: 1.6 !important;
+      }
+    }
+  }
+
+  // ── Right — Contact Form ──────────────────
+  .contact-form {
+    background: #ffffff;
+    border-radius: 20px;
+    padding: 2.5rem 2rem;
+    height: 100%;
+    position: relative;
+    overflow: hidden;
+    border: 1px solid $border-muted;
+    box-shadow: $shadow-card;
+
+    &::before {
+      content: "";
+      position: absolute;
+      top: 0;
+      left: 0;
+      right: 0;
+      height: 3px;
+      background: linear-gradient(
+        90deg,
+        transparent,
+        $primary-color,
+        transparent
+      );
+    }
+
+    h3 {
+      color: $secondary-color;
+      font-size: 1.3rem;
+      font-weight: 700;
+      margin-bottom: 0.6rem;
+    }
+
+    &__intro {
+      font-size: 0.92rem;
+      color: lighten($secondary-color, 25%);
+      line-height: 1.75;
+      margin-bottom: 1.75rem;
+    }
+
+    .form-group {
+      display: flex;
+      flex-direction: column;
+      gap: 6px;
+
+      label {
+        font-size: 0.8rem;
+        font-weight: 700;
+        text-transform: uppercase;
+        letter-spacing: 0.08em;
+        color: $secondary-color;
+      }
+    }
+
+    .form-control {
+      width: 100%;
+      padding: 11px 16px;
+      font-size: 0.92rem;
+      font-family: "Rubik", sans-serif;
+      color: $secondary-color;
+      background: #fafaf9;
+      border: 1.5px solid rgba(0, 0, 0, 0.1);
+      border-radius: 10px;
+      outline: none;
+      transition:
+        border-color 0.25s ease,
+        box-shadow 0.25s ease,
+        background 0.25s ease;
+
+      &::placeholder {
+        color: rgba($secondary-color, 0.4);
+        font-size: 0.88rem;
+      }
+
+      &:focus {
+        border-color: $primary-color;
+        background: #ffffff;
+        box-shadow: 0 0 0 3px rgba($primary-color, 0.12);
+      }
+    }
+
+    textarea.form-control {
+      resize: vertical;
+      min-height: 130px;
+    }
+
+    &__submit {
+      display: inline-flex;
+      align-items: center;
+      gap: 10px;
+      width: 100%;
+      justify-content: center;
+      background-color: $primary-color;
+      border: 2px solid $primary-color;
+      color: $text-white;
+      font-size: 0.9rem;
+      font-weight: 700;
+      font-family: "Rubik", sans-serif;
+      text-transform: uppercase;
+      letter-spacing: 0.09em;
+      padding: 14px 32px;
+      border-radius: 10px;
+      cursor: pointer;
+      box-shadow: 0 6px 20px rgba($primary-color, 0.35);
+      transition: all 0.25s ease;
+      margin-top: 0.5rem;
+
+      &:hover {
+        background-color: $secondary-color;
+        border-color: $secondary-color;
+        transform: translateY(-2px);
+        box-shadow: 0 10px 28px rgba($secondary-color, 0.3);
+      }
+
+      &:active {
+        transform: translateY(0);
+      }
+    }
+  }
+
+  // ── Responsive ────────────────────────────
+  @media (max-width: 991px) {
+    .contact-info,
+    .contact-form {
+      padding: 2rem 1.5rem;
+    }
+  }
+
+  @media (max-width: 767px) {
+    padding: 50px 0;
+
+    .contact-form {
+      &__submit {
+        font-size: 0.85rem;
+        padding: 13px 24px;
+      }
+    }
+  }
+}
+// ============================================
+// SECTION 12 — Login
+// ============================================
+.section-12 {
+  margin-top:60px;
+  background: #f5f7fa;
+  min-height: calc(100vh - 160px);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  position: relative;
+  overflow: hidden;
+  padding: 60px 16px;
+
+  // Decorative radial accents
+  &::before {
+    content: "";
+    position: absolute;
+    top: -120px;
+    right: -120px;
+    width: 480px;
+    height: 480px;
+    background: radial-gradient(
+      circle,
+      rgba($primary-color, 0.08) 0%,
+      transparent 70%
+    );
+    border-radius: 50%;
+    pointer-events: none;
+  }
+
+  &::after {
+    content: "";
+    position: absolute;
+    bottom: -120px;
+    left: -120px;
+    width: 400px;
+    height: 400px;
+    background: radial-gradient(
+      circle,
+      rgba($primary-color, 0.05) 0%,
+      transparent 70%
+    );
+    border-radius: 50%;
+    pointer-events: none;
+  }
+
+  // ── Centered wrapper ──────────────────────
+  .login-wrapper {
+    width: 100%;
+    max-width: 480px;
+    position: relative;
+    z-index: 2;
+  }
+
+  // ── Card ──────────────────────────────────
+  .login-card {
+    background: #ffffff;
+    border-radius: 24px;
+    border: 1px solid $border-muted;
+    box-shadow: $shadow-strong;
+    padding: 3rem 2.5rem;
+    position: relative;
+    overflow: hidden;
+
+    // Amber top accent line
+    &::before {
+      content: "";
+      position: absolute;
+      top: 0;
+      left: 0;
+      right: 0;
+      height: 3px;
+      background: linear-gradient(
+        90deg,
+        transparent,
+        $primary-color,
+        transparent
+      );
+    }
+
+    // ── Brand ────────────────────────────────
+    &__brand {
+      text-align: center;
+      margin-bottom: 2.25rem;
+
+      p {
+        font-size: 0.92rem;
+        color: lighten($secondary-color, 25%);
+        margin: 0;
+        line-height: 1.6;
+      }
+    }
+
+    &__logo {
+      display: inline-block;
+      font-size: 1.6rem;
+      font-weight: 800;
+      text-transform: uppercase;
+      letter-spacing: 0.04em;
+      color: $secondary-color;
+      margin-bottom: 0.4rem;
+
+      span {
+        color: $primary-color;
+        position: relative;
+
+        &::after {
+          content: "";
+          position: absolute;
+          bottom: -2px;
+          left: 0;
+          width: 100%;
+          height: 2px;
+          background: $primary-color;
+          border-radius: 2px;
+        }
+      }
+    }
+
+    // ── Form ─────────────────────────────────
+    &__form {
+      display: flex;
+      flex-direction: column;
+      gap: 1.25rem;
+    }
+
+    // ── Submit button ─────────────────────────
+    &__submit {
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      gap: 10px;
+      width: 100%;
+      background-color: $primary-color;
+      border: 2px solid $primary-color;
+      color: $text-white;
+      font-size: 0.92rem;
+      font-weight: 700;
+      font-family: "Rubik", sans-serif;
+      text-transform: uppercase;
+      letter-spacing: 0.09em;
+      padding: 14px 32px;
+      border-radius: 10px;
+      cursor: pointer;
+      box-shadow: 0 6px 20px rgba($primary-color, 0.35);
+      transition: all 0.25s ease;
+      margin-top: 0.25rem;
+
+      &:hover {
+        background-color: $secondary-color;
+        border-color: $secondary-color;
+        transform: translateY(-2px);
+        box-shadow: 0 10px 28px rgba($secondary-color, 0.3);
+      }
+
+      &:active {
+        transform: translateY(0);
+      }
+    }
+
+    // ── Register link ─────────────────────────
+    &__register {
+      text-align: center;
+      font-size: 0.88rem;
+      color: lighten($secondary-color, 25%);
+      margin: 0;
+
+      a {
+        color: $primary-color;
+        font-weight: 700;
+        transition: color 0.2s ease;
+
+        &:hover {
+          color: darken($primary-color, 10%);
+        }
+      }
+    }
+  }
+
+  // ── Form Groups ───────────────────────────
+  .form-group {
+    display: flex;
+    flex-direction: column;
+    gap: 6px;
+
+    label {
+      font-size: 0.8rem;
+      font-weight: 700;
+      text-transform: uppercase;
+      letter-spacing: 0.08em;
+      color: $secondary-color;
+    }
+  }
+
+  // Label row — label + forgot link side by side
+  .label-row {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+
+    label {
+      margin: 0;
+    }
+  }
+
+  .forgot-link {
+    font-size: 0.78rem;
+    font-weight: 600;
+    color: $primary-color;
+    transition: color 0.2s ease;
+
+    &:hover {
+      color: darken($primary-color, 10%);
+    }
+  }
+
+  // ── Input wrapper (icon + field + toggle) ─
+  .input-wrapper {
+    position: relative;
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  width: 100%;
+    .input-icon {
+      position: absolute;
+      left: 14px;
+      font-size: 0.95rem;
+      font-style: normal;
+      pointer-events: none;
+      line-height: 1;
+      z-index: 1;
+    }
+
+    .form-control {
+      width: 100%;
+      padding: 11px 16px 11px 42px;
+      font-size: 0.92rem;
+      font-family: "Rubik", sans-serif;
+      color: $secondary-color;
+      background: #fafaf9;
+      border: 1.5px solid rgba(0, 0, 0, 0.1);
+      border-radius: 10px;
+      outline: none;
+      transition:
+        border-color 0.25s ease,
+        box-shadow 0.25s ease,
+        background 0.25s ease;
+
+      &::placeholder {
+        color: rgba($secondary-color, 0.4);
+        font-size: 0.88rem;
+      }
+
+      &:focus {
+        border-color: $primary-color;
+        background: #ffffff;
+        box-shadow: 0 0 0 3px rgba($primary-color, 0.12);
+      }
+    }
+
+    .toggle-password {
+      position: absolute;
+      right: 12px;
+      background: none;
+      border: none;
+      cursor: pointer;
+      font-size: 1rem;
+      padding: 4px;
+      line-height: 1;
+      color: lighten($secondary-color, 30%);
+      transition: color 0.2s ease;
+
+      &:hover {
+        color: $primary-color;
+      }
+    }
+  }
+
+  // ── Remember Me checkbox ──────────────────
+  .remember-row {
+    margin-top: -0.25rem;
+  }
+
+  .checkbox-label {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    cursor: pointer;
+    font-size: 0.88rem;
+    color: lighten($secondary-color, 20%);
+
+    input[type="checkbox"] {
+      width: 16px;
+      height: 16px;
+      accent-color: $primary-color;
+      cursor: pointer;
+      flex-shrink: 0;
+    }
+
+    span {
+      line-height: 1;
+    }
+  }
+
+  // ── Responsive ────────────────────────────
+  @media (max-width: 767px) {
+    padding: 40px 16px;
+    min-height: calc(100vh - 120px);
+
+    .login-card {
+      padding: 2rem 1.5rem;
+      border-radius: 18px;
+    }
+  }
+}
+// ============================================
+// DASHBOARD LAYOUT
+// ============================================
+.dashboard-layout {
+  display: flex;
+  min-height: 100vh;
+  padding-top: 80px; // fixed header offset
+  background: #f5f7fa;
+}
+
+.dashboard-main {
+  flex: 1;
+  min-width: 0;
+}
+
+.dashboard-inner {
+  padding: 2.5rem 2rem;
+  display: flex;
+  flex-direction: column;
+  gap: 2rem;
+}
+
+// ── Page Heading ──────────────────────────
+.dashboard-heading {
+  display: flex;
+  align-items: flex-end;
+  justify-content: space-between;
+  flex-wrap: wrap;
+  gap: 1rem;
+
+  span {
+    display: inline-block;
+    color: $primary-color;
+    font-size: 0.78rem;
+    font-weight: 700;
+    text-transform: uppercase;
+    letter-spacing: 0.14em;
+    margin-bottom: 0.4rem;
+    padding: 4px 12px;
+    background: $primary-light;
+    border: 1px solid rgba($primary-color, 0.3);
+    border-radius: 50px;
+  }
+
+  h2 {
+    color: $secondary-color;
+    margin: 0;
+    font-size: 1.8rem;
+  }
+}
+
+.dashboard-date {
+  font-size: 0.85rem;
+  color: lighten($secondary-color, 30%);
+  font-weight: 500;
+  margin: 0;
+}
+
+// ── Stats Grid ────────────────────────────
+.stats-grid {
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  gap: 1.25rem;
+}
+
+.stat-card {
+  background: #ffffff;
+  border: 1px solid $border-muted;
+  border-radius: 16px;
+  padding: 1.5rem 1.25rem;
+  display: flex;
+  align-items: center;
+  gap: 1rem;
+  box-shadow: 0 2px 12px rgba(0, 0, 0, 0.05);
+  transition:
+    transform 0.3s ease,
+    box-shadow 0.3s ease;
+  position: relative;
+  overflow: hidden;
+
+  // Amber left accent
+  &::before {
+    content: "";
+    position: absolute;
+    left: 0;
+    top: 0;
+    bottom: 0;
+    width: 3px;
+    background: $primary-color;
+    border-radius: 3px 0 0 3px;
+  }
+
+  &:hover {
+    transform: translateY(-4px);
+    box-shadow: $shadow-card;
+  }
+
+  &__icon {
+    font-size: 1.75rem;
+    width: 52px;
+    height: 52px;
+    background: $primary-light;
+    border-radius: 12px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-shrink: 0;
+  }
+
+  &__body {
+    display: flex;
+    flex-direction: column;
+    gap: 2px;
+  }
+
+  &__value {
+    font-size: 1.75rem;
+    font-weight: 800;
+    color: $secondary-color;
+    line-height: 1;
+  }
+
+  &__label {
+    font-size: 0.78rem;
+    font-weight: 600;
+    text-transform: uppercase;
+    letter-spacing: 0.08em;
+    color: lighten($secondary-color, 30%);
+  }
+}
+
+// ── Two-column content grid ───────────────
+.dashboard-grid {
+  display: grid;
+  grid-template-columns: 1.6fr 1fr;
+  gap: 1.5rem;
+  align-items: start;
+}
+
+// ── Dash Card ─────────────────────────────
+.dash-card {
+  background: #ffffff;
+  border: 1px solid $border-muted;
+  border-radius: 16px;
+  box-shadow: 0 2px 12px rgba(0, 0, 0, 0.05);
+  overflow: hidden;
+
+  &__header {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding: 1.25rem 1.5rem;
+    border-bottom: 1px solid $border-muted;
+
+    h3 {
+      font-size: 0.88rem;
+      font-weight: 700;
+      text-transform: uppercase;
+      letter-spacing: 0.08em;
+      color: $secondary-color;
+      margin: 0;
+    }
+
+    a {
+      font-size: 0.78rem;
+      font-weight: 700;
+      color: $primary-color;
+      text-transform: uppercase;
+      letter-spacing: 0.06em;
+      transition: color 0.2s ease;
+
+      &:hover {
+        color: darken($primary-color, 10%);
+      }
+    }
+  }
+
+  &__body {
+    padding: 0 1.5rem 1.5rem;
+  }
+}
+
+// ── Table ─────────────────────────────────
+.dash-table {
+  width: 100%;
+  border-collapse: collapse;
+  margin-top: 1rem;
+
+  th {
+    font-size: 0.72rem;
+    font-weight: 700;
+    text-transform: uppercase;
+    letter-spacing: 0.1em;
+    color: lighten($secondary-color, 30%);
+    padding: 0 12px 10px 0;
+    border-bottom: 1px solid $border-muted;
+    white-space: nowrap;
+  }
+
+  td {
+    font-size: 0.88rem;
+    color: $secondary-color;
+    padding: 12px 12px 12px 0;
+    border-bottom: 1px solid $border-muted;
+    vertical-align: middle;
+
+    &:first-child {
+      font-weight: 600;
+    }
+  }
+
+  tr:last-child td {
+    border-bottom: none;
+  }
+}
+
+// ── Badges ────────────────────────────────
+.badge {
+  display: inline-block;
+  font-size: 0.72rem;
+  font-weight: 700;
+  text-transform: uppercase;
+  letter-spacing: 0.06em;
+  padding: 4px 10px;
+  border-radius: 50px;
+
+  &--green {
+    background: rgba(16, 185, 129, 0.12);
+    color: #065f46;
+    border: 1px solid rgba(16, 185, 129, 0.25);
+  }
+
+  &--amber {
+    background: $primary-light;
+    color: darken($primary-color, 15%);
+    border: 1px solid rgba($primary-color, 0.3);
+  }
+
+  &--gray {
+    background: rgba($secondary-color, 0.08);
+    color: $secondary-color;
+    border: 1px solid rgba($secondary-color, 0.15);
+  }
+}
+
+// ── Article List ──────────────────────────
+.article-list {
+  list-style: none;
+  padding: 1rem 1.5rem 0;
+  margin: 0;
+  display: flex;
+  flex-direction: column;
+  gap: 0;
+
+  &__item {
+    display: flex;
+    align-items: flex-start;
+    gap: 12px;
+    padding: 12px 0;
+    border-bottom: 1px solid $border-muted;
+
+    &:last-child {
+      border-bottom: none;
+    }
+  }
+
+  &__icon {
+    font-size: 1rem;
+    width: 34px;
+    height: 34px;
+    background: $primary-light;
+    border-radius: 8px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-shrink: 0;
+  }
+
+  &__detail {
+    display: flex;
+    flex-direction: column;
+    gap: 3px;
+  }
+
+  &__title {
+    font-size: 0.88rem;
+    font-weight: 600;
+    color: $secondary-color;
+    line-height: 1.45;
+  }
+
+  &__date {
+    font-size: 0.75rem;
+    color: lighten($secondary-color, 30%);
+    font-weight: 500;
+  }
+}
+
+// ── Quick Actions ─────────────────────────
+.quick-actions {
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+  padding: 0 1.5rem 1.5rem;
+}
+
+.quick-btn {
+  display: flex;
+  align-items: center;
+  padding: 10px 16px;
+  font-size: 0.82rem;
+  font-weight: 700;
+  text-transform: uppercase;
+  letter-spacing: 0.07em;
+  color: $secondary-color;
+  background: #fafaf9;
+  border: 1.5px solid $border-muted;
+  border-radius: 8px;
+  transition:
+    background 0.2s ease,
+    color 0.2s ease,
+    border-color 0.2s ease;
+
+  &:hover {
+    background: $primary-light;
+    color: $primary-color;
+    border-color: rgba($primary-color, 0.3);
+  }
+}
+
+// ── Responsive ────────────────────────────
+@media (max-width: 1199px) {
+  .stats-grid {
+    grid-template-columns: repeat(2, 1fr);
+  }
+}
+
+@media (max-width: 991px) {
+  .dashboard-main {
+    margin-right: 0;
+  }
+
+  .dashboard-grid {
+    grid-template-columns: 1fr;
+  }
+}
+
+@media (max-width: 767px) {
+  .dashboard-inner {
+    padding: 1.5rem 1rem;
+  }
+
+  .stats-grid {
+    grid-template-columns: repeat(2, 1fr);
+    gap: 1rem;
+  }
+
+  .stat-card__value {
+    font-size: 1.4rem;
+  }
+}
+
+@media (max-width: 480px) {
+  .stats-grid {
+    grid-template-columns: 1fr;
+  }
+}
+
+// ============================================
+// SECTION 13 — Sidebar
+// ============================================
+.section-13 {
+  position: sticky;
+  top: 80px;
+  left: 0; // changed from right: 0
+  width: 260px;
+  height: 100vh;
+  z-index: 999;
+
+  .card {
+    height: 100%;
+    border-radius: 0 !important;
+    background: $dark-background;
+    border-left: 1px solid rgba(255, 255, 255, 0.06) !important;
+    position: relative;
+    overflow: hidden;
+
+    // Amber top accent line
+    &::before {
+      content: "";
+      position: absolute;
+      top: 0;
+      left: 0;
+      right: 0;
+      height: 3px;
+      background: linear-gradient(
+        90deg,
+        transparent,
+        $primary-color,
+        transparent
+      );
+    }
+  }
+
+  .card-body {
+    padding: 2rem 1.5rem;
+    display: flex;
+    flex-direction: column;
+    height: 100%;
+  }
+
+  // ── Sidebar Title ─────────────────────────
+  h4 {
+    font-size: 0.72rem;
+    font-weight: 700;
+    text-transform: uppercase;
+    letter-spacing: 0.14em;
+    color: rgba(255, 255, 255, 0.35);
+    margin-bottom: 1.5rem;
+    padding-bottom: 1rem;
+    border-bottom: 1px solid rgba(255, 255, 255, 0.06);
+    position: relative;
+
+    &::after {
+      content: "";
+      position: absolute;
+      bottom: -1px;
+      left: 0;
+      width: 28px;
+      height: 2px;
+      background: $primary-color;
+      border-radius: 2px;
+    }
+  }
+
+  // ── Nav List ──────────────────────────────
+  ul {
+    list-style: none;
+    padding: 0;
+    margin: 0;
+    display: flex;
+    flex-direction: column;
+    gap: 4px;
+    flex: 1;
+
+    li {
+      width: 100%;
+
+      a {
+        display: flex;
+        align-items: center;
+        gap: 10px;
+        width: 100%;
+        padding: 10px 14px;
+        font-size: 0.88rem;
+        font-weight: 600;
+        color: rgba(255, 255, 255, 0.6);
+        text-transform: uppercase;
+        letter-spacing: 0.06em;
+        border-radius: 8px;
+        transition:
+          background 0.2s ease,
+          color 0.2s ease,
+          padding-left 0.2s ease;
+        position: relative;
+
+        // Left accent bar on hover
+        &::before {
+          content: "";
+          position: absolute;
+          left: 0;
+          top: 50%;
+          transform: translateY(-50%) scaleY(0);
+          width: 3px;
+          height: 60%;
+          background: $primary-color;
+          border-radius: 0 3px 3px 0;
+          transition: transform 0.2s ease;
+        }
+
+        &:hover {
+          background: rgba(255, 255, 255, 0.06);
+          color: $primary-color;
+          padding-left: 20px;
+
+          &::before {
+            transform: translateY(-50%) scaleY(1);
+          }
+        }
+
+        // Active state
+        &.active {
+          background: rgba($primary-color, 0.12);
+          color: $primary-color;
+          padding-left: 20px;
+
+          &::before {
+            transform: translateY(-50%) scaleY(1);
+          }
+        }
+      }
+
+      // ── Logout button — pinned to bottom ──
+      &:last-child {
+        margin-top: auto;
+        padding-top: 1rem;
+        border-top: 1px solid rgba(255, 255, 255, 0.06);
+
+        .btn {
+          display: flex;
+          align-items: center;
+          justify-content: center;
+          gap: 8px;
+          width: 100%;
+          padding: 10px 16px;
+          font-size: 0.82rem;
+          font-weight: 700;
+          font-family: "Rubik", sans-serif;
+          text-transform: uppercase;
+          letter-spacing: 0.08em;
+          border-radius: 8px;
+          cursor: pointer;
+          transition: all 0.25s ease;
+          background-color: transparent;
+          border: 1.5px solid rgba(255, 255, 255, 0.15);
+          color: rgba(255, 255, 255, 0.6);
+
+          &::after {
+            content: "→";
+          }
+
+          &:hover {
+            background-color: rgba(217, 119, 6, 0.15);
+            border-color: $primary-color;
+            color: $primary-color;
+          }
+        }
+      }
+    }
+  }
+
+  // ── Responsive — hide on small screens ───
+  @media (max-width: 991px) {
+    display: none;
+  }
+}
+
+
+// ============================================
+// BLOG DETAIL PAGE
+// ============================================
+
+.blog-detail {
+
+  // ── Article Wrapper ───────────────────────
+  &__wrapper {
+    max-width: 860px;
+    margin: 0 auto;
+  }
+
+  // ── Back Button ───────────────────────────
+  &__back {
+    display: inline-flex;
+    align-items: center;
+    gap: 8px;
+    color: $primary-color;
+    font-size: 0.82rem;
+    font-weight: 700;
+    text-transform: uppercase;
+    letter-spacing: 0.1em;
+    margin-bottom: 2rem;
+    transition: all 0.25s ease;
+
+    &::before {
+      content: "←";
+      transition: transform 0.25s ease;
+    }
+
+    &:hover {
+      color: darken($primary-color, 10%);
+
+      &::before {
+        transform: translateX(-4px);
+      }
+    }
+  }
+
+  // ── Featured Image ────────────────────────
+  &__image {
+    width: 100%;
+    max-height: 480px;
+    object-fit: cover;
+    border-radius: 18px;
+    box-shadow: $shadow-card;
+    margin-bottom: 2rem;
+    display: block;
+  }
+
+  // ── Category Badge ────────────────────────
+  &__category {
+    display: inline-block;
+    color: $primary-color;
+    font-size: 0.75rem;
+    font-weight: 700;
+    text-transform: uppercase;
+    letter-spacing: 0.12em;
+    padding: 5px 14px;
+    background: $primary-light;
+    border: 1px solid rgba($primary-color, 0.3);
+    border-radius: 50px;
+    margin-bottom: 1rem;
+  }
+
+  // ── Article Title ─────────────────────────
+  &__title {
+    font-size: clamp(1.6rem, 3.5vw, 2.4rem);
+    font-weight: 800;
+    line-height: 1.2;
+    letter-spacing: -0.02em;
+    color: $secondary-color;
+    margin-bottom: 1.5rem;
+  }
+
+  // ── Intro / Lead Paragraph ────────────────
+  &__intro {
+    font-size: 1.08rem !important;
+    line-height: 1.85 !important;
+    color: lighten($secondary-color, 15%) !important;
+    margin-bottom: 2.5rem !important;
+    padding-bottom: 2.5rem;
+    border-bottom: 1px solid $border-muted;
+  }
+
+  // ── Article Sections ──────────────────────
+  &__section {
+    margin-bottom: 2.25rem;
+
+    &:last-of-type {
+      margin-bottom: 0;
+    }
+  }
+
+  &__section-heading {
+    font-size: 1.1rem;
+    font-weight: 700;
+    color: $secondary-color;
+    margin-bottom: 0.85rem;
+    padding-left: 14px;
+    border-left: 3px solid $primary-color;
+    line-height: 1.4;
+  }
+
+  &__section-body {
+    font-size: 1rem !important;
+    line-height: 1.9 !important;
+    color: lighten($secondary-color, 18%) !important;
+    margin: 0 !important;
+  }
+
+  // ── Conclusion block ──────────────────────
+  &__conclusion {
+    margin-top: 3rem;
+    padding: 2rem 2rem 2rem 2.25rem;
+    background: $primary-light;
+    border-left: 4px solid $primary-color;
+    border-radius: 0 12px 12px 0;
+
+    h4 {
+      font-size: 1rem;
+      font-weight: 700;
+      color: $secondary-color;
+      text-transform: uppercase;
+      letter-spacing: 0.06em;
+      margin-bottom: 0.75rem;
+    }
+
+    p {
+      font-size: 0.97rem !important;
+      line-height: 1.85 !important;
+      color: lighten($secondary-color, 15%) !important;
+      margin: 0 !important;
+    }
+  }
+
+  // ── Divider ───────────────────────────────
+  &__divider {
+    border: none;
+    border-top: 1px solid $border-muted;
+    margin: 3.5rem 0;
+  }
+
+  // ── Related Articles ──────────────────────
+  &__related {
+    padding-top: 0;
+
+    h3 {
+      font-size: 1.3rem;
+      font-weight: 700;
+      color: $secondary-color;
+      margin-bottom: 2rem;
+      position: relative;
+      padding-bottom: 1rem;
+
+      &::after {
+        content: "";
+        position: absolute;
+        bottom: 0;
+        left: 0;
+        width: 40px;
+        height: 3px;
+        background: $primary-color;
+        border-radius: 2px;
+      }
+    }
+  }
+}
+
+// ── 404 Fallback ──────────────────────────
+.blog-detail-404 {
+  min-height: 60vh;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  text-align: center;
+  padding: 4rem 1rem;
+
+  h2 {
+    color: $secondary-color;
+    margin-bottom: 1rem;
+  }
+
+  p {
+    color: lighten($secondary-color, 20%);
+    margin-bottom: 2rem;
+  }
+}
+
+// ============================================
+// RESPONSIVE
+// ============================================
+@media (max-width: 991px) {
+  .blog-detail {
+    &__image {
+      max-height: 380px;
+    }
+
+    &__conclusion {
+      padding: 1.5rem 1.5rem 1.5rem 1.75rem;
+    }
+  }
+}
+
+@media (max-width: 767px) {
+  .blog-detail {
+    &__image {
+      max-height: 260px;
+      border-radius: 12px;
+    }
+
+    &__title {
+      font-size: 1.5rem;
+    }
+
+    &__intro {
+      font-size: 1rem !important;
+    }
+
+    &__section-heading {
+      font-size: 1rem;
+    }
+
+    &__conclusion {
+      padding: 1.25rem 1.25rem 1.25rem 1.5rem;
+    }
+
+    &__related h3 {
+      font-size: 1.1rem;
+    }
+  }
+}
+
+// ============================================
+// PROJECT DETAIL PAGE
+// ============================================
+
+.project-detail {
+
+  // ── Back Button ───────────────────────────
+  &__back {
+    display: inline-flex;
+    align-items: center;
+    gap: 8px;
+    color: $primary-color;
+    font-size: 0.82rem;
+    font-weight: 700;
+    text-transform: uppercase;
+    letter-spacing: 0.1em;
+    margin-bottom: 2rem;
+    transition: all 0.25s ease;
+
+    &::before {
+      content: "←";
+      transition: transform 0.25s ease;
+    }
+
+    &:hover {
+      color: darken($primary-color, 10%);
+      &::before { transform: translateX(-4px); }
+    }
+  }
+
+  // ── Featured Image ────────────────────────
+  &__image {
+    width: 100%;
+    max-height: 520px;
+    object-fit: cover;
+    border-radius: 18px;
+    box-shadow: $shadow-card;
+    margin-bottom: 2.5rem;
+    display: block;
+  }
+
+  // ── Two-column layout ─────────────────────
+  &__layout {
+    display: grid;
+    grid-template-columns: 1fr 300px;
+    gap: 3rem;
+    align-items: start;
+  }
+
+  // ── Main content ──────────────────────────
+  &__main { min-width: 0; }
+
+  // ── Category Badge ────────────────────────
+  &__category {
+    display: inline-block;
+    color: $primary-color;
+    font-size: 0.75rem;
+    font-weight: 700;
+    text-transform: uppercase;
+    letter-spacing: 0.12em;
+    padding: 5px 14px;
+    background: $primary-light;
+    border: 1px solid rgba($primary-color, 0.3);
+    border-radius: 50px;
+    margin-bottom: 1rem;
+  }
+
+  // ── Title ─────────────────────────────────
+  &__title {
+    font-size: clamp(1.6rem, 3.5vw, 2.4rem);
+    font-weight: 800;
+    line-height: 1.2;
+    letter-spacing: -0.02em;
+    color: $secondary-color;
+    margin-bottom: 1.5rem;
+  }
+
+  // ── Overview ─────────────────────────────
+  &__overview {
+    font-size: 1.08rem !important;
+    line-height: 1.85 !important;
+    color: lighten($secondary-color, 15%) !important;
+    margin-bottom: 2.5rem !important;
+    padding-bottom: 2.5rem;
+    border-bottom: 1px solid $border-muted;
+  }
+
+  // ── Body Sections ─────────────────────────
+  &__section {
+    margin-bottom: 2.25rem;
+    &:last-of-type { margin-bottom: 0; }
+  }
+
+  &__section-heading {
+    font-size: 1.1rem;
+    font-weight: 700;
+    color: $secondary-color;
+    margin-bottom: 0.85rem;
+    padding-left: 14px;
+    border-left: 3px solid $primary-color;
+    line-height: 1.4;
+  }
+
+  &__section-body {
+    font-size: 1rem !important;
+    line-height: 1.9 !important;
+    color: lighten($secondary-color, 18%) !important;
+    margin: 0 !important;
+  }
+
+  // ── Divider ───────────────────────────────
+  &__divider {
+    border: none;
+    border-top: 1px solid $border-muted;
+    margin: 4rem 0 3rem;
+  }
+
+  // ── Related ───────────────────────────────
+  &__related {
+    h3 {
+      font-size: 1.3rem;
+      font-weight: 700;
+      color: $secondary-color;
+      margin-bottom: 2rem;
+      position: relative;
+      padding-bottom: 1rem;
+
+      &::after {
+        content: "";
+        position: absolute;
+        bottom: 0;
+        left: 0;
+        width: 40px;
+        height: 3px;
+        background: $primary-color;
+        border-radius: 2px;
+      }
+    }
+  }
+}
+
+// ============================================
+// PROJECT CARD — used in related section
+// (mirrors .blog-card for visual consistency)
+// ============================================
+.project-card {
+  background: #fff;
+  border-radius: 18px;
+  overflow: hidden;
+  border: 1px solid $border-muted;
+  height: 100%;
+  transition: transform 0.35s ease, box-shadow 0.35s ease;
+
+  &:hover {
+    transform: translateY(-8px);
+    box-shadow: $shadow-card;
+
+    .project-card__image img {
+      transform: scale(1.08);
+    }
+  }
+
+  &__image {
+    position: relative;
+    overflow: hidden;
+
+    img {
+      width: 100%;
+      height: 220px;
+      object-fit: cover;
+      display: block;
+      transition: transform 0.45s ease;
+    }
+
+    &::after {
+      content: "";
+      position: absolute;
+      inset: 0;
+      background: linear-gradient(to top, rgba(0,0,0,0.15), transparent);
+    }
+  }
+
+  &__content {
+    padding: 1.4rem 1.5rem 1.6rem;
+  }
+
+  &__category {
+    display: inline-block;
+    margin-bottom: 0.6rem;
+    padding: 4px 12px;
+    background: $primary-light;
+    border: 1px solid rgba($primary-color, 0.25);
+    color: $primary-color;
+    font-size: 0.72rem;
+    font-weight: 700;
+    text-transform: uppercase;
+    letter-spacing: 0.08em;
+    border-radius: 50px;
+  }
+
+  &__title {
+    font-size: 1rem;
+    font-weight: 700;
+    line-height: 1.4;
+    color: $secondary-color;
+    margin-bottom: 0.6rem;
+  }
+
+  &__desc {
+    font-size: 0.88rem !important;
+    line-height: 1.7 !important;
+    color: lighten($secondary-color, 20%) !important;
+    margin-bottom: 1.1rem !important;
+    display: -webkit-box;
+    -webkit-line-clamp: 3;
+    -webkit-box-orient: vertical;
+    overflow: hidden;
+  }
+}
+
+// ============================================
+// PROJECT INFO CARD (sidebar)
+// ============================================
+.project-info-card {
+  background: #ffffff;
+  border: 1px solid $border-muted;
+  border-radius: 18px;
+  padding: 1.75rem 1.5rem;
+  box-shadow: $shadow-card;
+  position: sticky;
+  top: 100px;
+  overflow: hidden;
+
+  &::before {
+    content: "";
+    position: absolute;
+    top: 0; left: 0; right: 0;
+    height: 3px;
+    background: linear-gradient(90deg, transparent, $primary-color, transparent);
+  }
+
+  h4 {
+    font-size: 0.8rem;
+    font-weight: 700;
+    text-transform: uppercase;
+    letter-spacing: 0.12em;
+    color: $secondary-color;
+    margin-bottom: 1.25rem;
+    padding-bottom: 1rem;
+    border-bottom: 1px solid $border-muted;
+  }
+
+  &__item {
+    display: flex;
+    justify-content: space-between;
+    align-items: flex-start;
+    gap: 12px;
+    padding: 10px 0;
+    border-bottom: 1px solid $border-muted;
+
+    &:last-of-type {
+      border-bottom: none;
+      margin-bottom: 1.25rem;
+    }
+  }
+
+  &__label {
+    font-size: 0.75rem;
+    font-weight: 700;
+    text-transform: uppercase;
+    letter-spacing: 0.09em;
+    color: lighten($secondary-color, 30%);
+    flex-shrink: 0;
+  }
+
+  &__value {
+    font-size: 0.88rem;
+    font-weight: 600;
+    color: $secondary-color;
+    text-align: right;
+    line-height: 1.5;
+  }
+
+  &__status {
+    color: #065f46;
+    background: rgba(16, 185, 129, 0.1);
+    border: 1px solid rgba(16, 185, 129, 0.25);
+    padding: 3px 10px;
+    border-radius: 50px;
+    font-size: 0.75rem;
+  }
+
+  &__cta {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 8px;
+    width: 100%;
+    padding: 13px 20px;
+    background: $primary-color;
+    border: 2px solid $primary-color;
+    color: $text-white;
+    font-size: 0.82rem;
+    font-weight: 700;
+    text-transform: uppercase;
+    letter-spacing: 0.08em;
+    border-radius: 10px;
+    box-shadow: 0 6px 20px rgba($primary-color, 0.3);
+    transition: all 0.25s ease;
+
+    &::after { content: "→"; }
+
+    &:hover {
+      background: $secondary-color;
+      border-color: $secondary-color;
+      color: $text-white;
+      transform: translateY(-2px);
+      box-shadow: 0 10px 28px rgba($secondary-color, 0.3);
+    }
+  }
+}
+
+// ── 404 Fallback ──────────────────────────
+.project-detail-404 {
+  min-height: 60vh;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  text-align: center;
+  padding: 4rem 1rem;
+
+  h2 { color: $secondary-color; margin-bottom: 1rem; }
+  p  { color: lighten($secondary-color, 20%); margin-bottom: 2rem; }
+}
+
+// ============================================
+// RESPONSIVE
+// ============================================
+@media (max-width: 1100px) {
+  .project-detail__layout {
+    grid-template-columns: 1fr 260px;
+    gap: 2rem;
+  }
+}
+
+@media (max-width: 991px) {
+  .project-detail {
+    &__layout { grid-template-columns: 1fr; }
+    &__image  { max-height: 380px; }
+  }
+  .project-info-card { position: static; }
+}
+
+@media (max-width: 767px) {
+  .project-detail {
+    &__image           { max-height: 260px; border-radius: 12px; }
+    &__title           { font-size: 1.5rem; }
+    &__overview        { font-size: 1rem !important; }
+    &__section-heading { font-size: 1rem; }
+    &__related h3      { font-size: 1.1rem; }
+  }
+
+  .project-card__image img { height: 180px; }
+}
+
+
+// ============================================
+// SERVICE DETAIL PAGE
+// ============================================
+
+.service-detail {
+
+  // ── Back Button ───────────────────────────
+  &__back {
+    display: inline-flex;
+    align-items: center;
+    gap: 8px;
+    color: $primary-color;
+    font-size: 0.82rem;
+    font-weight: 700;
+    text-transform: uppercase;
+    letter-spacing: 0.1em;
+    margin-bottom: 2rem;
+    transition: all 0.25s ease;
+
+    &::before {
+      content: "←";
+      transition: transform 0.25s ease;
+    }
+
+    &:hover {
+      color: darken($primary-color, 10%);
+      &::before { transform: translateX(-4px); }
+    }
+  }
+
+  // ── Featured Image ────────────────────────
+  &__image {
+    width: 100%;
+    max-height: 500px;
+    object-fit: cover;
+    border-radius: 18px;
+    box-shadow: $shadow-card;
+    margin-bottom: 2.5rem;
+    display: block;
+  }
+
+  // ── Two-column layout ─────────────────────
+  &__layout {
+    display: grid;
+    grid-template-columns: 1fr 300px;
+    gap: 3rem;
+    align-items: start;
+  }
+
+  &__main { min-width: 0; }
+
+  // ── Category Badge ────────────────────────
+  &__category {
+    display: inline-block;
+    color: $primary-color;
+    font-size: 0.75rem;
+    font-weight: 700;
+    text-transform: uppercase;
+    letter-spacing: 0.12em;
+    padding: 5px 14px;
+    background: $primary-light;
+    border: 1px solid rgba($primary-color, 0.3);
+    border-radius: 50px;
+    margin-bottom: 1rem;
+  }
+
+  // ── Title ─────────────────────────────────
+  &__title {
+    font-size: clamp(1.6rem, 3.5vw, 2.4rem);
+    font-weight: 800;
+    line-height: 1.2;
+    letter-spacing: -0.02em;
+    color: $secondary-color;
+    margin-bottom: 1.5rem;
+  }
+
+  // ── Overview ──────────────────────────────
+  &__overview {
+    font-size: 1.08rem !important;
+    line-height: 1.85 !important;
+    color: lighten($secondary-color, 15%) !important;
+    margin-bottom: 2.5rem !important;
+    padding-bottom: 2.5rem;
+    border-bottom: 1px solid $border-muted;
+  }
+
+  // ── Body Sections ─────────────────────────
+  &__section {
+    margin-bottom: 2.25rem;
+    &:last-of-type { margin-bottom: 0; }
+  }
+
+  &__section-heading {
+    font-size: 1.1rem;
+    font-weight: 700;
+    color: $secondary-color;
+    margin-bottom: 0.85rem;
+    padding-left: 14px;
+    border-left: 3px solid $primary-color;
+    line-height: 1.4;
+  }
+
+  &__section-body {
+    font-size: 1rem !important;
+    line-height: 1.9 !important;
+    color: lighten($secondary-color, 18%) !important;
+    margin: 0 !important;
+  }
+
+  // ── Divider ───────────────────────────────
+  &__divider {
+    border: none;
+    border-top: 1px solid $border-muted;
+    margin: 4rem 0 3rem;
+  }
+
+  // ── Related ───────────────────────────────
+  &__related {
+    h3 {
+      font-size: 1.3rem;
+      font-weight: 700;
+      color: $secondary-color;
+      margin-bottom: 2rem;
+      position: relative;
+      padding-bottom: 1rem;
+
+      &::after {
+        content: "";
+        position: absolute;
+        bottom: 0; left: 0;
+        width: 40px;
+        height: 3px;
+        background: $primary-color;
+        border-radius: 2px;
+      }
+    }
+  }
+}
+
+// ============================================
+// SERVICE INFO CARD (sidebar)
+// ============================================
+.service-info-card {
+  background: #ffffff;
+  border: 1px solid $border-muted;
+  border-radius: 18px;
+  padding: 1.75rem 1.5rem;
+  box-shadow: $shadow-card;
+  position: sticky;
+  top: 100px;
+  overflow: hidden;
+
+  &::before {
+    content: "";
+    position: absolute;
+    top: 0; left: 0; right: 0;
+    height: 3px;
+    background: linear-gradient(90deg, transparent, $primary-color, transparent);
+  }
+
+  h4 {
+    font-size: 0.8rem;
+    font-weight: 700;
+    text-transform: uppercase;
+    letter-spacing: 0.12em;
+    color: $secondary-color;
+    margin-bottom: 1rem;
+  }
+
+  // ── Features list ─────────────────────────
+  &__features {
+    list-style: none;
+    padding: 0;
+    margin: 0 0 1.5rem;
+
+    li {
+      display: flex;
+      align-items: center;
+      gap: 10px;
+      font-size: 0.88rem;
+      font-weight: 500;
+      color: lighten($secondary-color, 10%);
+      padding: 8px 0;
+      border-bottom: 1px solid $border-muted;
+      line-height: 1.5;
+
+      &:last-child { border-bottom: none; }
+
+      &::before {
+        content: "✓";
+        color: $primary-color;
+        font-weight: 800;
+        font-size: 0.85rem;
+        flex-shrink: 0;
+      }
+    }
+  }
+
+  &__divider {
+    border: none;
+    border-top: 1px solid $border-muted;
+    margin: 1.25rem 0;
+  }
+
+  &__note {
+    font-size: 0.85rem !important;
+    line-height: 1.65 !important;
+    color: lighten($secondary-color, 25%) !important;
+    margin-bottom: 1.25rem !important;
+  }
+
+  // ── CTA button ────────────────────────────
+  &__cta {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 8px;
+    width: 100%;
+    padding: 13px 20px;
+    margin-bottom: 0.75rem;
+    background: $primary-color;
+    border: 2px solid $primary-color;
+    color: $text-white;
+    font-size: 0.82rem;
+    font-weight: 700;
+    text-transform: uppercase;
+    letter-spacing: 0.08em;
+    border-radius: 10px;
+    box-shadow: 0 6px 20px rgba($primary-color, 0.3);
+    transition: all 0.25s ease;
+
+    &::after { content: "→"; }
+
+    &:hover {
+      background: $secondary-color;
+      border-color: $secondary-color;
+      color: $text-white;
+      transform: translateY(-2px);
+      box-shadow: 0 10px 28px rgba($secondary-color, 0.3);
+    }
+  }
+
+  // ── Secondary link button ─────────────────
+  &__secondary {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 8px;
+    width: 100%;
+    padding: 12px 20px;
+    background: transparent;
+    border: 2px solid $border-muted;
+    color: $secondary-color;
+    font-size: 0.82rem;
+    font-weight: 700;
+    text-transform: uppercase;
+    letter-spacing: 0.08em;
+    border-radius: 10px;
+    transition: all 0.25s ease;
+
+    &:hover {
+      border-color: $primary-color;
+      color: $primary-color;
+      background: $primary-light;
+    }
+  }
+}
+
+// ── 404 Fallback ──────────────────────────
+.service-detail-404 {
+  min-height: 60vh;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  text-align: center;
+  padding: 4rem 1rem;
+
+  h2 { color: $secondary-color; margin-bottom: 1rem; }
+  p  { color: lighten($secondary-color, 20%); margin-bottom: 2rem; }
+}
+
+// ============================================
+// RESPONSIVE
+// ============================================
+@media (max-width: 1100px) {
+  .service-detail__layout {
+    grid-template-columns: 1fr 260px;
+    gap: 2rem;
+  }
+}
+
+@media (max-width: 991px) {
+  .service-detail {
+    &__layout { grid-template-columns: 1fr; }
+    &__image  { max-height: 380px; }
+  }
+  .service-info-card { position: static; }
+}
+
+@media (max-width: 767px) {
+  .service-detail {
+    &__image           { max-height: 240px; border-radius: 12px; }
+    &__title           { font-size: 1.5rem; }
+    &__overview        { font-size: 1rem !important; }
+    &__section-heading { font-size: 1rem; }
+    &__related h3      { font-size: 1.1rem; }
+  }
+}
